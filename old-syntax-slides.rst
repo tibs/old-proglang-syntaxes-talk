@@ -90,6 +90,33 @@ This is not valid FORTRAN...
 
 ----
 
+FORTRAN IV - bottles
+--------------------
+
+.. code:: fortran
+
+        INTEGER BOTTLS
+        DO 50 I = 1, 99
+        BOTTLS = 100 - I
+        PRINT 10, BOTTLS
+        PRINT 20, BOTTLS
+        PRINT 30
+        BOTTLS = BOTTLS - 1
+        PRINT 10, BOTTLS
+        PRINT 40
+  50    CONTINUE
+        STOP
+  10    FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
+  20    FORMAT(1X, I2, 19H bottle(s) of beer.)
+  30    FORMAT(34H Take one down and pass it around,)
+  40    FORMAT(1X)
+        END
+
+-- amended from an example by Allen Mcintosh, mcintosh@bellcore.com 
+
+
+----
+
 FORTRAN IV - Leading spaces
 ---------------------------
 
@@ -97,9 +124,90 @@ The first 6 columns and their uses
 
 ----
 
+FORTRAN DATA CARDS
+------------------
+
+* Comment Cards
+
+  The first character on the card much be C; all other characters are ignored
+  in subsequent processing.
+   
+* Statement Cards
+  
+  Statement cards are subdivided into four sections as follows:
+
+::
+
+                  1         2         3         4         5         6         7            8
+    12345 | 6 | 789012345678901234567890123456789012345678901234567890123456789012 | 34567890
+
+       
+* The first five characters are used for unique statement numbers. Numbers do
+  not need to appear in sequence.  Any statement (except the END statement)
+  may have a statement number.
+
+* The sixth character is called the "continuation" character.  If more space
+  is required from the previous card, include any character (except space
+  or 0) in the 6th position of the next card.
+
+  One convention was to put a 0 in the continuation field of the first card
+  (the one start was to be continued).
+
+* Positions 7-72 are used for the actual program code.  Often programmers use
+  a TAB (8 spaces) rather than type 7 spaces.
+
+* Positions 73-80 are infrequently used, but when they are they are used for
+  identification codes which are only of interest to the programmer, they are
+  not computed.
+
+
+(actually, putting a sequence number in that last column is pretty important
+in case you drop the deck of cards!)
+
+----
+
+FORTRAN IV
+----------
+
+No reserved words, context gives meaning.
+
+Spaces within program code are ignored.
+
+So:
+
+.. code:: fortran
+
+            IF(IF.EQ.PROGRAM)IF=IF*PROGRAM
+
+is legal FORTRAN (of some type)
+
+Also, case is not relevant - although I had a habit of typing all the code in
+CAPITALS (after all, that's what your left little finger is for).
+
+I remember that the Fortran compiler we used was limited to 6 character
+variable, function and subroutine names, which made writing libraries
+interesting...
+            
+----
+
 FORTRAN IV - Computed GOTO
 --------------------------
 
+
+Arithmetic IF:
+    
+        IF (numeric-expression) statement1,statement2,statement3
+   
+Evaluate the expression, then transfer to statement1 if the result is
+negative, to statement2 if zero, to statement3 if positive.  For example,
+
+.. code:: fortran
+          
+        IF (X/Y*Z) 100,300,50
+        
+If the result of the computation is negative, transfer to statement number
+100, if zero transfer to statement number 300, if positive to statement
+number 50.
 
 (if/then/else invented by Lisp?)
 
@@ -109,6 +217,11 @@ FORTRAN - Functions versus subroutines
 --------------------------------------
 
 Are those the right terms?
+
+function returns a single value (assigned to the function name)
+
+subroutine returns 0 or more values, by modifying the variables in its
+parameter list
 
 ----
 
@@ -131,6 +244,8 @@ My father's parentheses
 
 Franz Lisp (?) and the ``]``
 
+...the inevitable xkcd cartoon
+
 ----
 
 COBOL
@@ -146,28 +261,6 @@ Snobol
 Double check
 
 ``<expression>, <jump if T>, <jump if F>``
-
-----
-
-BCPL
-----
-
-``<becomes>`` - ``:=`` because ASCII doesn't have ``←``
-
-  Hmm. Is that true? It's what I remmember, but https://en.wikipedia.org/wiki/EBCDIC
-  doesn't seem to show that character.
-
-Similarly, ``!=`` and variants because no ``≠`` (was that in EBCDIC?), and so on
-
-Hmm. https://en.wikipedia.org/wiki/Talk:ALGOL_68 has
-
-"""The American Standards Association (ASA, later to become ANSI) first
-published ASCII as a standard in 1963. ASCII-1963 lacked the lowercase
-letters, and had an up-arrow (↑) instead of the caret (^) and a left-arrow (←)
-instead of the underscore (_)."""
-
-So probably need to lost this slide - it's too confusing, and it appears my
-memory is wrong.
 
 ----
 
@@ -256,6 +349,8 @@ JCL - Job Control Language
 
 IBM
 
+Again with the significant placement of things in columns
+
 ----
 
 Smalltalk
@@ -276,6 +371,8 @@ Erlang and Prolog
 -----------------
 
 Full stop to end expressions/statements, not semicolon
+
+(I've heard people say Erlang is inspired by Prolog in some sense?)
 
 ----
 
@@ -338,6 +435,17 @@ pertinent to this exact topic...
 
 * https://www.hillelwayne.com/equals-as-assignment/ Why Does "=" Mean
   Assignment? also by Hillel Wayne, from 2018
+  
+* FORTRAN IV
+
+  - http://www.math-cs.gordon.edu/courses/cs323/FORTRAN/fortran.html
+  - http://www.jaymoseley.com/hercules/fortran/fort_mini.htm
+  - http://www.quadibloc.com/comp/fort03.htm some context with respect to
+    FORTRAN II, and some talk on specifics of particular implenentations
+
+  Still to look at:
+
+  - https://hackaday.com/2015/10/26/this-is-not-your-fathers-fortran/1G
   
 
 ----
