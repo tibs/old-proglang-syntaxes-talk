@@ -762,12 +762,18 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer#APL
 
 Classic version:
 
-.. code:: apl
+.. I never could figure out how to display this with pandoc/XeLaTeX, so am
+.. resorting to a screen shot - and I hope that square glyph in the screenshot
+.. is meant to be a square!
 
-     bob  ←  { (⍕⍵), ' bottle', (1=⍵)↓'s of beer'}
-     bobw ←  {(bob ⍵) , ' on the wall'}
-     beer ←  { (bobw ⍵) , ', ', (bob ⍵) , '; take one down and pass it around, ', bobw ⍵-1}
-     ↑beer¨ ⌽(1-⎕IO)+⍳99
+.. image:: images/apl-larger.png
+   :scale: 150%
+   :alt: APL code
+
+..  bob  ←  { (⍕⍵), ' bottle', (1=⍵)↓'s of beer'}
+..  bobw ←  {(bob ⍵) , ' on the wall'}
+..  beer ←  { (bobw ⍵) , ', ', (bob ⍵) , '; take one down and pass it around, ', bobw ⍵-1}
+..  ↑beer¨ ⌽(1-⎕IO)+⍳99
 
 and its equivalent in J
 
@@ -1051,6 +1057,10 @@ A straightforward approach
           Transcript show: (sr at:s) ; show: (sr at:2) ; cr.
                       (v ~~ 0) ifTrue: [ Transcript show: (sr at:4) ; cr. ].
     ].
+
+----
+
+https://pharo.org/ - squeak variant
 
 ----
 
@@ -1536,6 +1546,10 @@ Don't forget the excellent http://www.softwarepreservation.org/ and
 particularly the http://www.softwarepreservation.org/projects page, which has
 links to many pages of programming language history, with a huge number of
 useful links.
+
+----
+
+* https://www.whoishostingthis.com/resources/apl/
 
 ----
 
