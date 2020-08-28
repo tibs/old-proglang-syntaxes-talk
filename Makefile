@@ -31,8 +31,9 @@ slides:
 
 .PHONY: 43
 43:
-	pandoc old-syntax-slides.rst -t beamer -o old-syntax-slides-4x3.pdf -V aspectratio:43 \
-            --pdf-engine=xelatex
+	rst2pdf -s light.style -b1 old-syntax-slides.rst -o old-syntax-slides-4x3.pdf
+#	pandoc old-syntax-slides.rst -t beamer -o old-syntax-slides-4x3.pdf -V aspectratio:43 \
+#            --pdf-engine=xelatex
 	open old-syntax-slides-4x3.pdf
 
 .PHONY: clean

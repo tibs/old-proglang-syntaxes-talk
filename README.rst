@@ -47,6 +47,14 @@ For what the Makefile can do, use::
 
 Requirements to build the documents:
 
+* I use poetry_ to manage the dependencies needed to build the PDFs.
+* rst2pdf_ and its dependencies
+
+.. _poetry: https://python-poetry.org/
+.. _rst2pdf: https://rst2pdf.org/
+
+as was:
+
 * pandoc_ and TeX_ (on mac, BasicTeX should be enough)
 * docutils_ (for reStructuredText_)
 

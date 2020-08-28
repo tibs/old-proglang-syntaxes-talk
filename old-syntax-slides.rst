@@ -1,6 +1,9 @@
-.. ==================================================================
-.. (What may now seem) syntax oddities in older programming languages
-.. ==================================================================
+(What may now seem) syntax oddities in older programming languages
+==================================================================
+
+.. class:: titleslideinfo
+
+   some intro information
 
 .. relevant available highlighters, from::
 ..
@@ -752,9 +755,52 @@ Characters that are in one but not the other
 APL - ancestor of R
 -------------------
 
-IBM golfball (picture?) and influence on APL - is this true or am I misremembering?
+IBM Selectric and golfball (picture would be nice) are mentioned on the APL
+wikipedia page.
 
-Give an example of APL versus R
+https://en.wikipedia.org/wiki/APL_(programming_language)#Mathematical_notation
+
+  A mathematical notation for manipulating arrays was developed by
+  Kenneth E. Iverson, starting in 1957 at Harvard University. In 1960, he
+  began work for IBM where he developed this notation with Adin Falkoff and
+  published it in his book A Programming Language in 1962.
+
+Early implementations had to use English reserved words for functions and
+operators.
+
+https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
+
+  A key development in the ability to use APL effectively, before the wide use
+  of cathode ray tube (CRT) terminals, was the development of a special IBM
+  Selectric typewriter interchangeable typing element with all the special APL
+  characters on it. This was used on paper printing terminal workstations
+  using the Selectric typewriter and typing element mechanism, such as the IBM
+  1050 and IBM 2741 terminal. Keycaps could be placed over the normal keys to
+  show which APL characters would be entered and typed when that key was
+  struck. For the first time, a programmer could type in and see proper APL
+  characters as used in Iverson's notation and not be forced to use awkward
+  English keyword representations of them. Falkoff and Iverson had the special
+  APL Selectric typing elements, 987 and 988, designed in late 1964, although
+  no APL computer system was available to use them. Iverson cited Falkoff
+  as the inspiration for the idea of using an IBM Selectric typing element for
+  the APL character set.
+
+  Many APL symbols, even with the APL characters on the Selectric typing
+  element, still had to be typed in by over-striking two extant element
+  characters. An example is the grade up character, which had to be made from
+  a delta (shift-H) and a Sheffer stroke (shift-M). This was necessary because
+  the APL character set was much larger than the 88 characters allowed on the
+  typing element, even when letters were restricted to upper-case (capitals).
+
+----
+
+APL -> J, using ASCII with digraphs instead of special symbols (basically, it
+adds dot and colon to things to make new symbols)
+
+APL -> S, a stastical programming language
+
+R is an implementation of S with some extensions. Much S code should run
+unaltered.
 
 ----
 
@@ -765,15 +811,18 @@ Classic version:
 .. I never could figure out how to display this with pandoc/XeLaTeX, so am
 .. resorting to a screen shot - and I hope that square glyph in the screenshot
 .. is meant to be a square!
-
-.. image:: images/apl-larger.png
-   :scale: 150%
-   :alt: APL code
-
+..
+.. And now I'm using rst2pdf, which also doesn't default to coping, I've
+.. already *got* the screenshot...
+..
 ..  bob  ←  { (⍕⍵), ' bottle', (1=⍵)↓'s of beer'}
 ..  bobw ←  {(bob ⍵) , ' on the wall'}
 ..  beer ←  { (bobw ⍵) , ', ', (bob ⍵) , '; take one down and pass it around, ', bobw ⍵-1}
 ..  ↑beer¨ ⌽(1-⎕IO)+⍳99
+
+.. image:: images/apl-larger.png
+   :scale: 150%
+   :alt: APL code
 
 and its equivalent in J
 
@@ -1068,6 +1117,9 @@ Occam
 -----
 
 Signficant indentation!
+
+http://concurrency.cc/docs/ - documentation for occam-pi, a superset of occam2
+that will run on an arduino. Last blogpost on the site was in 2015.
 
 ----
 
