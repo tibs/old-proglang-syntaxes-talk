@@ -23,7 +23,7 @@ linkColor: #1b7b88
 
 styles:
     normal:
-        fontSize: 14
+        fontSize: 12
 
     bodytext:
         alignment: TA_LEFT
@@ -39,7 +39,7 @@ styles:
 
     code:
         parent: literal
-        fontSize: 11
+        fontSize: 8
         leftIndent: 0
         spaceBefore: 8
         spaceAfter: 8
