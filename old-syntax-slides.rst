@@ -39,6 +39,8 @@ Presented at CamPUG_, virtually, 1st September 2020
 
 Written using reStructuredText_.
 
+.. page::
+
 Converted to PDF slides using pandoc_ and beamer_.
 
 Source and extended notes at https://github.com/tibs/old-proglang-syntaxes-talk
@@ -47,7 +49,6 @@ Source and extended notes at https://github.com/tibs/old-proglang-syntaxes-talk
 .. _pandoc: https://pandoc.org
 .. _beamer: https://github.com/josephwright/beamer
 
-----
 
 Introduction
 ------------
@@ -66,7 +67,6 @@ functional languages (ML, Haskell, etc.).
 Weighted heavily towards programming languages I know a little bit about, of
 course.
 
-----
 
 Timeline?
 ---------
@@ -82,7 +82,6 @@ LISP and Algol  1958
 COBOL           1959
 ==============  =========
 
-----
 
 Plankalkül
 ----------
@@ -94,7 +93,6 @@ programming language to be designed for a computer. First implemented in 1975
 
 https://en.wikipedia.org/wiki/Plankalk%C3%BCl
 
-----
 
 FORTRAN IV - an example
 -----------------------
@@ -111,7 +109,6 @@ This is not valid FORTRAN...
     2000  6HHello
     2100  6HWorld!
 
-----
 
 FORTRAN IV - bottles
 --------------------
@@ -139,40 +136,38 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#FORTRAN-IV
         stop
         end
 
-----
+.. page::
 
 which I amend to give the (to me) more familiar:
 
 .. code:: fortran
 
-        INTEGER BOTTLS
-        DO 50 I = 1, 99
-        BOTTLS = 100 - I
-        PRINT 10, BOTTLS
-        PRINT 20, BOTTLS
-        PRINT 30
-        BOTTLS = BOTTLS - 1
-        PRINT 10, BOTTLS
-        PRINT 40
-  50    CONTINUE
-        STOP
-  10    FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
-  20    FORMAT(1X, I2, 19H bottle(s) of beer.)
-  30    FORMAT(34H Take one down and pass it around,)
-  40    FORMAT(1X)
-        END
+  ••••••INTEGER BOTTLS
+  ••••••DO 50 I = 1, 99
+  ••••••••BOTTLS = 100 - I
+  ••••••••PRINT 10, BOTTLS
+  ••••••••PRINT 20, BOTTLS
+  ••••••••PRINT 30
+  ••••••••BOTTLS = BOTTLS - 1
+  ••••••••PRINT 10, BOTTLS
+  ••••••••PRINT 40
+  50••••CONTINUE
+  ••••••STOP
+  10••••FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
+  20••••FORMAT(1X, I2, 19H bottle(s) of beer.)
+  30••••FORMAT(34H Take one down and pass it around,)
+  40••••FORMAT(1X)
+  ••••••END
 
 (amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
 
 
-----
 
 FORTRAN IV - Leading spaces
 ---------------------------
 
 The first 6 columns and their uses
 
-----
 
 FORTRAN DATA CARDS
 ------------------
@@ -191,7 +186,7 @@ FORTRAN DATA CARDS
                   1         2        7            8
     12345 | 6 | 7890123456789 .. .. 9012 | 34567890
 
-----
+.. page::
        
 * The first five characters are used for unique statement numbers. Numbers do
   not need to appear in sequence.  Any statement (except the END statement)
@@ -215,14 +210,17 @@ FORTRAN DATA CARDS
 (actually, putting a sequence number in that last column is pretty important
 in case you drop the deck of cards!)
 
-----
+Note that labels *look* like numbers, but they aren't really. So their order
+doesn't make any difference to the compiler. Also, ``▿▿123`` is just as
+allowed as ``123▿▿``.
 
 FORTRAN IV
 ----------
 
-No reserved words, context gives meaning.
+Spaces within program code are ignored. So ``GOTO`` is the same as ``GO TO``
+is the same as ``G O T O``.
 
-Spaces within program code are ignored.
+No reserved words, context gives meaning.
 
 So:
 
@@ -239,7 +237,6 @@ I remember that the Fortran compiler we used was limited to 6 character
 variable, function and subroutine names, which made writing libraries
 interesting...
             
-----
 
 FORTRAN IV - Computed GOTO
 --------------------------
@@ -260,7 +257,7 @@ If the result of the computation is negative, transfer to statement number
 100, if zero transfer to statement number 300, if positive to statement
 number 50.
 
-----
+.. page::
 
 (if/then/else invented by Lisp?)
 
@@ -273,7 +270,6 @@ cond-structure. Algol 60 took up if–then–else and popularized it."""
 
 so Algol 60 got "if-then-else" and LISP got ``cond``)
 
-----
 
 FORTRAN - Functions versus subroutines
 --------------------------------------
@@ -285,7 +281,6 @@ function returns a single value (assigned to the function name)
 subroutine returns 0 or more values, by modifying the variables in its
 parameter list
 
-----
 
 LISP
 ----
@@ -303,7 +298,7 @@ programmers rapidly chose to use S-expressions, and M-expressions were
 abandoned. M-expressions surfaced again with short-lived attempts of MLisp[11]
 by Horace Enea and CGOL by Vaughan Pratt."""
 
-----
+.. page::
 
 https://en.wikipedia.org/wiki/M-expression
 
@@ -318,7 +313,7 @@ as the dominant form of Lisp."""
 
 The Lisp 1.5 manual does, of course, talk about both forms.
 
-----
+.. page::
 
 From
 http://www.softwarepreservation.org/projects/LISP/lisp2/SP-2450-SUMSQUARE_LCS.pdf
@@ -343,7 +338,7 @@ giving the result::
 
   69.0
 
-----
+.. page::
 
 or, of course!
 
@@ -365,7 +360,6 @@ https://rosettacode.org/wiki/Sum_of_squares#Scheme
   define (sum-of-squares l)
     (apply + (map * l l)))
 
-----
 
 LISP - as we know it
 --------------------
@@ -403,7 +397,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/l.html#LISP
   (foo 99)))
 
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
   
@@ -432,7 +426,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
   (beer 99)
 
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
 
@@ -450,7 +444,7 @@ Common Lisp
 
   (bottles 99)
 
-----
+.. page::
 
 Scheme
 
@@ -471,7 +465,6 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer#Scheme
       (display "would you wanna me to sing it again?")))
   (sing-to-x 99))
 
-----
 
 My father's parentheses
 -----------------------
@@ -480,10 +473,9 @@ Franz Lisp (?) and the ``]``
 
 ...the inevitable xkcd cartoon
 
-----
 
 COBOL
-----
+-----
 
 Do I have anything to say?
 
@@ -568,7 +560,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           MOVE BOTTLES TO NUMBER-OF-BEERS-3.
           WRITE BEERS-OUT FROM LINE2.
 
-----
+.. page::
 
 https://rosettacode.org/wiki/Category:COBOL
 
@@ -594,7 +586,6 @@ are not suppressed. (OpenCOBOL - 1.1.0)
       display space
     end-perform.
 
-----
 
 Snobol
 ------
@@ -605,7 +596,7 @@ Double check
 
 Snobol versus Spitbol
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Snobol
 
@@ -625,7 +616,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Snobol
           OUTPUT = '99 BOTTLES OF BEER'
   END
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#SNOBOL4
 
@@ -654,7 +645,6 @@ bottles. Correctly handles bottle/bottles.
   loop    bottles(n); n = gt(n,0) n - 1 :s(loop)
   end
 
-----
 
 Spitbol
 -------
@@ -684,7 +674,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Spitbol
       OUTPUT = p6 p4 ; OUTPUT = ; NE(b,0)                   :S(A1)
   END
 
-----
 
 BCPL
 ----
@@ -693,8 +682,12 @@ Also:
 
 * ``$( .. )$``
 * ``IF .. THEN`` and ``TEST .. THEN .. ELSE``
+* a statement continues to the next line if it can't have ended (so, for
+  instance, if the last character was the ``+`` of an arithmetic expression
+* labels *are* values, and since everything is a word, you can do arithmetic
+  on them.
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
 
@@ -725,7 +718,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
       FINISH
   $)
 
-----
 
 Distraction - character sets
 ----------------------------
@@ -739,7 +731,6 @@ Distraction - character sets
 
 and others...
 
-----
 
 ASCII versus EBCDIC
 -------------------
@@ -750,7 +741,6 @@ Characters that are in one but not the other
 * http://www.dynamoo.com/technical/ascii-ebcdic.htm (opinitionated!)
 * https://en.wikipedia.org/wiki/EBCDIC/
 
-----
 
 APL - ancestor of R
 -------------------
@@ -792,7 +782,7 @@ https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
   the APL character set was much larger than the 88 characters allowed on the
   typing element, even when letters were restricted to upper-case (capitals).
 
-----
+.. page::
 
 APL -> J, using ASCII with digraphs instead of special symbols (basically, it
 adds dot and colon to things to make new symbols)
@@ -802,7 +792,7 @@ APL -> S, a stastical programming language
 R is an implementation of S with some extensions. Much S code should run
 unaltered.
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#APL
 
@@ -836,7 +826,7 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer#J
   beer"0 >:i.-99
 
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#R
 
@@ -862,7 +852,7 @@ Simple looping solution in R
   song(99)#play the song by calling the function
           
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#S-Plus
 
@@ -885,7 +875,7 @@ S - is this the right S?
               }
   }
 
-----
+.. page::
 
 J
 
@@ -916,7 +906,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/j.html#J
   2 bottles of beer on the wall, 2 bottles of beer; take one down and pass it around, 1 bottle of beer on the wall
   1 bottle of beer on the wall, 1 bottle of beer; take one down and pass it around, 0 bottles of beer on the wall
 
-----
+.. page::
   
 R
 
@@ -939,7 +929,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/r.html#R
     print("")
   }
           
-----
 
 Algol 68 - case stropping
 -------------------------
@@ -951,7 +940,6 @@ quotes)
 
 (also, bold stropping in print)
 
-----
 
 Algol 68 - whitespace in variable names
 ---------------------------------------
@@ -961,14 +949,13 @@ Algol 68 - whitespace in variable names
    Strictly speaking we do not need this temporary variable but
    the code is clearer if we have it = 3
 
-----
 
 Algol 68 - REFs
 ---------------
 
 Explain
 
-----
+.. page::
 
 Algol 68
 
@@ -995,7 +982,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/a.html#Algol-68
     OD
   )
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#ALGOL_68
 
@@ -1004,16 +991,15 @@ with ALGOL 68G version Any (tested with release mk15-0.8b.fc9.i386)
 
 .. code:: algol68
 
-main:(
-   FOR bottles FROM 99 TO 1 BY -1 DO
-     printf(($z-d" bottles of beer on the wall"l$, bottles));
-     printf(($z-d" bottles of beer"l$, bottles));
-     printf(($"Take one down, pass it around"l$));
-     printf(($z-d" bottles of beer on the wall"ll$, bottles-1))
-   OD
-)
+  main:(
+    FOR bottles FROM 99 TO 1 BY -1 DO
+      printf(($z-d" bottles of beer on the wall"l$, bottles));
+      printf(($z-d" bottles of beer"l$, bottles));
+      printf(($"Take one down, pass it around"l$));
+      printf(($z-d" bottles of beer on the wall"ll$, bottles-1))
+    OD
+  )
 
-----
 
 RPG
 ---
@@ -1022,7 +1008,7 @@ Compare to Snobol ???
 
 Can I actually make a sensible example for this?
 
-----
+.. page::
 
 RPG/400
 
@@ -1052,16 +1038,6 @@ The following as presented appears to start with 5 spaces on each line.
      O                                   22 'TAKE ONE DOWN AND PASS'
      O                                   32 'IT AROUND'
 
-----
-
-JCL - Job Control Language
---------------------------
-
-IBM
-
-Again with the significant placement of things in columns
-
-----
 
 Smalltalk
 ---------
@@ -1083,7 +1059,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#SmallTalk
 
 I think that's rather elegant.
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#Smalltalk
 
@@ -1107,11 +1083,10 @@ A straightforward approach
                       (v ~~ 0) ifTrue: [ Transcript show: (sr at:4) ; cr. ].
     ].
 
-----
+.. page::
 
 https://pharo.org/ - squeak variant
 
-----
 
 Occam
 -----
@@ -1121,7 +1096,7 @@ Signficant indentation!
 http://concurrency.cc/docs/ - documentation for occam-pi, a superset of occam2
 that will run on an arduino. Last blogpost on the site was in 2015.
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
 
@@ -1178,7 +1153,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
     beers (BEERS, screen)
   :
 
-----
 
 Erlang and Prolog
 -----------------
@@ -1187,7 +1161,7 @@ Full stop to end expressions/statements, not semicolon
 
 (I've heard people say Erlang is inspired by Prolog in some sense?)
 
-----
+.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/e.html#Erlang
 
@@ -1227,7 +1201,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/e.html#Erlang
   bottles(N)->
       lists:append(integer_to_list(N)," bottles").
 
-----
+.. page::
 
 Prolog
 
@@ -1254,7 +1228,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/p.html#Prolog
       write(NX), write(' bottles of beer on the wall.'), nl, nl,
       bottles(NX).
 
-----
+.. page::
 
 Erlang
 
@@ -1302,7 +1276,7 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer#Erlang
               sing_verse(Bottle)
       end.
 
-----
+.. page::
 
 Prolog - works with SWI Prolog
 
@@ -1322,7 +1296,7 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer/Prolog
   :- bottles(99).
 
 
-----
+.. page::
 
 or, handling plurals:
 
@@ -1348,7 +1322,6 @@ or, handling plurals:
 
   :- bottles(99).
 
-----
 
 Forth and stack based languages
 -------------------------------
@@ -1387,7 +1360,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#Forth
 
   99 nbottles
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
 
@@ -1408,7 +1381,7 @@ https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
 
   99 verses
 
-----
+.. page::
 
 or create a beer language and write the program:
 
@@ -1450,7 +1423,6 @@ or create a beer language and write the program:
         ANOTHER 
         HANGOVER ;
 
-----
 
 Maybe TCL?
 ----------
@@ -1485,14 +1457,13 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/t.html#TCL
           line4 $i
   }
 
-----
+.. page::
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer/Tcl
 
 not sure it's worth including any here, but there are several examples,
 showcasing the ways one might do it in tcl
 
-----
 
 ABC - Python's inspirational ancestor
 -------------------------------------
@@ -1527,18 +1498,12 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/a.html#ABC
 
   DRINK
 
-----
 
 We do not talk about INTERCAL
 -----------------------------
 
 Not *really* a language people use
 
-----
-
-...
-
-----
 
 Interesting links
 -----------------
@@ -1559,7 +1524,7 @@ pertinent to this exact topic...
 
   I haven't read this yet
 
-----
+.. page::
 
 * https://en.wikipedia.org/wiki/History_of_programming_languages
 
@@ -1574,12 +1539,12 @@ pertinent to this exact topic...
 * http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/ has Fortran IV
   and seems to work
 
-----
+.. page::
 
 * https://www.hillelwayne.com/equals-as-assignment/ Why Does "=" Mean
   Assignment? also by Hillel Wayne, from 2018
 
-----
+.. page::
   
 * FORTRAN IV
 
@@ -1592,18 +1557,17 @@ pertinent to this exact topic...
 
   - https://hackaday.com/2015/10/26/this-is-not-your-fathers-fortran/1G
 
-----
+.. page::
   
 Don't forget the excellent http://www.softwarepreservation.org/ and
 particularly the http://www.softwarepreservation.org/projects page, which has
 links to many pages of programming language history, with a huge number of
 useful links.
 
-----
+.. page::
 
 * https://www.whoishostingthis.com/resources/apl/
 
-----
 
 Fin
 ---

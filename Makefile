@@ -1,16 +1,18 @@
-# This version of the Makefile assumes that pandoc and (enough of) TeX are
-# available.
+# This version of the Makefile assumes that rst2pdf and its dependencies
+# are installed.
 
-# Note the use of the --pdf-engine=xelatex switch for pandoc.
-# This is to allow use of the ← and ↑ characters, which otherwise
-# would cause LaTeX to say things like
-# "Package inputenc Error: Unicode character ⍕ (U+2355) not set up for use with LaTeX."
+RST2PDF=rst2pdf -s light.style \
+            --break-level=1 \
+            --fit-literal-mode=overflow \
+            -e preprocess
+            #--font-path /Library/Fonts/Microsoft \
+            #--font-path /System/Library/Fonts \
 
 .PHONY: default
 default: html pdf
 
 # We don't try to provide an HTML version of the slides in this version
-# - use the PDF produces by 'slides' instead.
+# (not least because the `.. page::` directive won't be recognised)
 .PHONY: html
 html:
 	rst2html.py README.rst README.html
@@ -18,22 +20,19 @@ html:
 
 .PHONY: pdf
 pdf: slides
-	pandoc old-syntax-notes.rst -o old-syntax-notes.pdf -V papersize:a4 --pdf-engine=xelatex
+	rst2pdf -e preprocess --fit-literal-mode=overflow old-syntax-notes.rst -o old-syntax-notes.pdf
 
-# The available aspect ratio of slides (for beamer only) are 1610 for 16:10,
-# 169 for 16:9, 149 for 14:9, 141 for 1.41:1, 54 for 5:4, 43 for 4:3 which is
-# the default, and 32 # for 3:2. It's probably enough to go for the following
-# pair of resolutions.
+# We only produce one aspect ratio with rst2pdf - we'd need to write a new
+# style for a different aspect ratio
+# (I'm calling the current aspect ratio "4x3", which it sort of looks like.
+# What we don't have is 16x9)
 .PHONY: slides
-slides:
-	pandoc old-syntax-slides.rst -t beamer -o old-syntax-slides-4x3.pdf -V aspectratio:43 --pdf-engine=xelatex
-	pandoc old-syntax-slides.rst -t beamer -o old-syntax-slides-16x9.pdf -V aspectratio:169 --pdf-engine=xelatex
+slides: 43
+
 
 .PHONY: 43
 43:
-	rst2pdf -s light.style -b1 old-syntax-slides.rst -o old-syntax-slides-4x3.pdf
-#	pandoc old-syntax-slides.rst -t beamer -o old-syntax-slides-4x3.pdf -V aspectratio:43 \
-#            --pdf-engine=xelatex
+	$(RST2PDF) old-syntax-slides.rst -o old-syntax-slides-4x3.pdf
 	open old-syntax-slides-4x3.pdf
 
 .PHONY: clean
