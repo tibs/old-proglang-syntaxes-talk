@@ -1,8 +1,7 @@
 # This version of the Makefile assumes that rst2pdf and its dependencies
 # are installed.
 
-RST2PDF=rst2pdf -s light.style \
-            --break-level=1 \
+RST2PDF=rst2pdf --break-level=1 \
             --fit-literal-mode=overflow \
             -e preprocess
             #--font-path /Library/Fonts/Microsoft \
@@ -22,17 +21,23 @@ html:
 pdf: slides
 	rst2pdf -e preprocess --fit-literal-mode=overflow old-syntax-notes.rst -o old-syntax-notes.pdf
 
-# We only produce one aspect ratio with rst2pdf - we'd need to write a new
-# style for a different aspect ratio
-# (I'm calling the current aspect ratio "4x3", which it sort of looks like.
-# What we don't have is 16x9)
 .PHONY: slides
-slides: 43
+slides: make4x3 make16x9
 
+.PHONY: make16x9
+make16x9:
+	$(RST2PDF) -s light16x9.style old-syntax-slides.rst -o old-syntax-slides-16x9.pdf
 
-.PHONY: 43
-43:
-	$(RST2PDF) old-syntax-slides.rst -o old-syntax-slides-4x3.pdf
+.PHONY: 16x9
+16x9:   make16x9
+	open old-syntax-slides-16x9.pdf
+
+.PHONY: make4x3
+make4x3:
+	$(RST2PDF) -s light4x3.style old-syntax-slides.rst -o old-syntax-slides-4x3.pdf
+
+.PHONY: 4x3
+4x3:   make4x3
 	open old-syntax-slides-4x3.pdf
 
 .PHONY: clean
@@ -47,6 +52,8 @@ distclean: clean
 help:
 	@echo 'make           same as: make html pdf'
 	@echo 'make pdf       create old-syntax-slides-[4x3|16x9].pdf and other PDF files'
+	@echo 'make 4x3       make and open old-syntax-slides-4x3.pdf'
+	@echo 'make 16x9      make and open old-syntax-slides-16x9.pdf'
 	@echo 'make html      create HTML files using rst2html'
 	@echo 'make slides    just create old-syntax-slides-[4x3|16x9].pdf'
 	@echo 'make clean     delete HTML files'

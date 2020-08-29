@@ -26,10 +26,8 @@ link at the top of the file's page.)
 
 Since this version of the talk uses PDF slides, which I produce via rst2pdf_,
 I'm including the resultant PDF files in the repository. These
-will not always be as up-to-date as the source files, so check their
+may not always be as up-to-date as the source files, so check their
 timestamps.
-
-**TODO** *The following is out-of-date and will change*
 
 * The 4x3 aspect ratio slides are `<old-syntax-slides-4x3.pdf>`_.
 * The 16x9 aspect ratio slides are `<old-syntax-slides-16x9.pdf>`_.
