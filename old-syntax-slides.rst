@@ -3,51 +3,13 @@
 
 .. class:: titleslideinfo
 
-   some intro information
+    By Tibs / Tony Ibbs
 
-.. relevant available highlighters, from::
-..
-..     $ pandoc --list-highlight-languages
-..
-.. abc          (I'm impressed)
-.. ada
-.. commonlisp
-.. default      (presumably if I don't specify)
-.. erlang
-.. fortran
-.. j
-.. pascal
-.. prolog
-.. r
-.. scheme
-.. tcl
-.. 
+    Presented at CamPUG_, virtually, 1st September 2020
 
+    Written using reStructuredText_.
 
-(What may now seem) syntax oddities in older programming languages
-------------------------------------------------------------------
-
-Some notes intended to accompany a talk on (what may now seem strange) syntax
-in older programming languages.
-
-...but it's OK to read them by themselves.
-
-
-By Tibs / Tony Ibbs
-
-Presented at CamPUG_, virtually, 1st September 2020
-
-Written using reStructuredText_.
-
-.. page::
-
-Converted to PDF slides using pandoc_ and beamer_.
-
-Source and extended notes at https://github.com/tibs/old-proglang-syntaxes-talk
-
-.. _reStructuredText: http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
-.. _pandoc: https://pandoc.org
-.. _beamer: https://github.com/josephwright/beamer
+    Converted to PDF slides using rst2pdf_.
 
 
 Introduction
@@ -158,6 +120,31 @@ which I amend to give the (to me) more familiar:
   30••••FORMAT(34H Take one down and pass it around,)
   40••••FORMAT(1X)
   ••••••END
+
+(amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
+
+.. page::
+
+or with actual spaces (which is easier to read)
+
+.. code:: fortran
+
+        INTEGER BOTTLS
+        DO 50 I = 1, 99
+          BOTTLS = 100 - I
+          PRINT 10, BOTTLS
+          PRINT 20, BOTTLS
+          PRINT 30
+          BOTTLS = BOTTLS - 1
+          PRINT 10, BOTTLS
+          PRINT 40
+  50    CONTINUE
+        STOP
+  10    FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
+  20    FORMAT(1X, I2, 19H bottle(s) of beer.)
+  30    FORMAT(34H Take one down and pass it around,)
+  40    FORMAT(1X)
+        END
 
 (amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
 
@@ -1568,27 +1555,38 @@ useful links.
 
 * https://www.whoishostingthis.com/resources/apl/
 
+88 Bottles examples
+-------------------
+
+Taken from one of:
+
+* https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
+* http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/
+
+Sum of squares from:
+
+* https://rosettacode.org/wiki/Sum_of_squares
+
+Full acknowledgements for each code source are in the notes.
 
 Fin
 ---
 
 Written using reStructuredText_.
 
-Converted to PDF slides using pandoc_ and beamer_.
+Converted to PDF slides using rst2pdf_.
 
 Source and extended notes at https://github.com/tibs/old-proglang-syntaxes-talk
 
-|cc-attr-sharealike|
-
-This slideshow and its related files are released under a `Creative Commons
-Attribution-ShareAlike 4.0 International License`_.
+|cc-attr-sharealike| This slideshow and its related files are released under a
+`Creative Commons Attribution-ShareAlike 4.0 International License`_.
 
 .. |cc-attr-sharealike| image:: images/cc-attribution-sharealike-88x31.png
    :alt: CC-Attribution-ShareAlike image
+   :align: middle
 
 .. _`Creative Commons Attribution-ShareAlike 4.0 International License`: http://creativecommons.org/licenses/by-sa/4.0/
 
 .. _CamPUG: https://www.meetup.com/CamPUG/
 .. _reStructuredText: http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
-.. _pandoc: https://pandoc.org
-.. _beamer: https://github.com/josephwright/beamer
+.. _rst2pdf: https://rst2pdf.org/
