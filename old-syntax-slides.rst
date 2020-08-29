@@ -262,7 +262,20 @@ If the result of the computation is negative, transfer to statement number
 100, if zero transfer to statement number 300, if positive to statement
 number 50.
 
-.. page::
+
+FORTRAN - Functions versus subroutines
+--------------------------------------
+
+Are those the right terms?
+
+function returns a single value (assigned to the function name)
+
+subroutine returns 0 or more values, by modifying the variables in its
+parameter list
+
+
+IF-THEN-ELSE
+------------
 
 (if/then/else invented by Lisp?)
 
@@ -274,17 +287,6 @@ of the Algol 58 specification. For Lisp, McCarthy used the more general
 cond-structure. Algol 60 took up if–then–else and popularized it."""
 
 so Algol 60 got "if-then-else" and LISP got ``cond``)
-
-
-FORTRAN - Functions versus subroutines
---------------------------------------
-
-Are those the right terms?
-
-function returns a single value (assigned to the function name)
-
-subroutine returns 0 or more values, by modifying the variables in its
-parameter list
 
 
 LISP
@@ -478,16 +480,19 @@ Franz Lisp (?) and the ``]``
 
 ...the inevitable xkcd cartoon
 
+https://xkcd.com/297/ (Randall Monroe)
+
+.. image:: images/lisp_cycles.png
+   :scale: 500%
+   :alt: XKCD comic, "These are your father's parentheses"
+
 
 COBOL
 -----
 
-Do I have anything to say?
-
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
 
 .. code:: cobol
-
 	
   IDENTIFICATION DIVISION.
   PROGRAM-ID.BOTTLES_OF_BEER.
@@ -503,6 +508,9 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           SELECT OUTPUT-FILE
                   ASSIGN TO BEERS_ON_THE_WALL.
   *
+
+.. code:: cobol
+          
   DATA DIVISION.
   FILE SECTION.
   FD OUTPUT-FILE
@@ -517,6 +525,8 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           05 COUNTERS.
                   10 BOTTLES                      PIC 999
                                                   VALUE 0.
+.. code:: cobol
+
   01 RECORD-OUT.
           05 LINE1.
                   10 NUMBER-OF-BEERS-1                    PIC ZZ9.
@@ -538,6 +548,11 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
                   10                                      PIC X(28)
                                   VALUE "BOTTLES OF BEER IN THE WALL".
   *
+
+.. page::
+
+.. code:: cobol
+
   PROCEDURE DIVISION.
   DRIVER-MODULE.
         PERFORM INITIALIZATION.
@@ -549,6 +564,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           OPEN OUTPUT OUTPUT-FILE.
           ADD 100 TO BOTTLES.
   *
+
   PROCESS.
           IF BOTTLES = 0 THEN
                   COMPUTE E-O-F = 1
@@ -559,7 +575,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           CLOSE OUTPUT-FILE.
   *
   WRITE-ROUTINE.
-            MOVE BOTTLES TO NUMBER-OF-BEERS-1, NUMBER-OF-BEERS-2.
+          MOVE BOTTLES TO NUMBER-OF-BEERS-1, NUMBER-OF-BEERS-2.
           COMPUTE BOTTLES = BOTTLES - 1.
           WRITE BEERS-OUT FROM LINE1.
           MOVE BOTTLES TO NUMBER-OF-BEERS-3.
@@ -701,20 +717,16 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
 	
   // BCPL version of 99 Bottles of Beer.
   // hacked by Akira KIDA <SDI00379@niftyserve.or.jp>
-
   GET "LIBHDR"
-
   MANIFEST $(
       BOTTLES = 99
   $)
-
   LET START() BE $(
       LET BEERS(N, S) BE $(
           TEST N = 0 THEN WRITEF("No more bottles")
                     ELSE WRITEF("%N bottle%S", N, (N = 1) -> "", "s")
           WRITEF(" of beer%S", S)
       $)
-
       FOR I = BOTTLES TO 1 BY -1 DO $(
               BEERS(I, " on the wall, ")
               BEERS(I, ".*NTake one down, pass it around.*N")
@@ -816,21 +828,14 @@ Simple looping solution in R
 
 .. code:: r
 
-  #a naive function to sing for N bottles of beer...
-
+  # a naive function to sing for N bottles of beer...
   song = function(bottles){
-
     for(i in bottles:1){ #for every integer bottles, bottles-1 ... 1
-
       cat(bottles," bottles of beer on the wall \n",bottles," bottles of beer \nTake one down, pass it around \n",
           bottles-1, " bottles of beer on the wall \n"," \n" ,sep="")       #join and print the text (\n means new line)
-
           bottles = bottles - 1 #take one down...
-
     }
-
   }
-
   song(99)#play the song by calling the function
           
 
@@ -1010,6 +1015,11 @@ The following as presented appears to start with 5 spaces on each line.
      C                     SUB  1         X
      C                     END
      C                     SETON                     LR
+
+.. page::
+     
+.. code:: rpg
+          
      OSCREEN  E
      O                         X          3
      O                                   26 'BOTTLES OF BEER ON THE'
@@ -1088,9 +1098,7 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
   -- Tony Curtis <Tony.Curtis@vcpc.univie.ac.at> 1997
   --
   PROC beer (CHAN OF BYTE key, screen, error)
-
     VAL INT BEERS IS 99 :                       -- big fridge!
-
     #USE "tty_utils.tco"
     PROC sorp (VAL INT n, CHAN OF BYTE out)     -- singular or plural?
       IF
@@ -1099,6 +1107,11 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
         TRUE
           SKIP
     :
+
+.. page::
+
+.. code:: occam
+          
     PROC sayit (VAL INT n, CHAN OF BYTE out)     -- text for each iteration
       SEQ
         out.number (n, 1, out)
@@ -1123,6 +1136,11 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
             out.string ("no bottles of beer on the wall.", 1, out)
         out.string ("*c*n", 1, out)
     :
+
+.. page::
+
+.. code:: occam
+
     PROC beers (VAL INT nbeers, CHAN OF BYTE out)
       INT b :
       SEQ
