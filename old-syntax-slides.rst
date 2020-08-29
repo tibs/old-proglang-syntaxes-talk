@@ -29,6 +29,24 @@ functional languages (ML, Haskell, etc.).
 Weighted heavily towards programming languages I know a little bit about, of
 course.
 
+.. Programming languages
+
+   FORTRAN IV
+   LISP (S and M forms)
+   COBOL (briefly)
+   Snobol / Spitbol (probably)
+   BCPL
+   APL and related languages
+   Algol 68
+   RPG (maybe)
+   Smalltalk
+   Occam (briefly)
+   Prolog / Erlang
+   Forth
+   Tcl (maybe)
+   ABC
+   Python
+
 
 Timeline?
 ---------
@@ -198,8 +216,8 @@ FORTRAN DATA CARDS
 in case you drop the deck of cards!)
 
 Note that labels *look* like numbers, but they aren't really. So their order
-doesn't make any difference to the compiler. Also, ``▿▿123`` is just as
-allowed as ``123▿▿``.
+doesn't make any difference to the compiler. Also, ``••123``  is just as
+allowed as ``123••``.
 
 FORTRAN IV
 ----------
@@ -704,29 +722,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
       $)
       FINISH
   $)
-
-
-Distraction - character sets
-----------------------------
-
-* 6 bit, 7, bit, 8 bit, 9 bit characters
-* ICL 6 bit - how to represent lower case characters
-* ASCII
-* EBCDIC
-* ISO 646
-* ISO 10646 and Unicode (let's not go into details)
-
-and others...
-
-
-ASCII versus EBCDIC
--------------------
-
-Characters that are in one but not the other
-
-* https://www.daytodaygk.com/ascii-vs-ebcdic/
-* http://www.dynamoo.com/technical/ascii-ebcdic.htm (opinitionated!)
-* https://en.wikipedia.org/wiki/EBCDIC/
 
 
 APL - ancestor of R
@@ -1484,6 +1479,53 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/a.html#ABC
         WRITE verse num, " on the wall." /
 
   DRINK
+
+Python
+------
+
+I suppose I had to include this, just for comparison
+
+https://rosettacode.org/wiki/99_Bottles_of_Beer/Python
+
+.. code:: python
+
+  def sing(b, end):
+      print(b or 'No more','bottle'+('s' if b-1 else ''), end)
+
+  for i in range(99, 0, -1):
+      sing(i, 'of beer on the wall,')
+      sing(i, 'of beer,')
+      print('Take one down, pass it around,')
+      sing(i-1, 'of beer on the wall.\n')
+
+(mainly included to show how one should not necessarily judge a language from
+the examples given!)
+
+.. page::
+
+Although I'm fond of
+http://rosettacode.org/wiki/99_Bottles_of_Beer#Python_3
+
+.. code:: python
+
+  """Pythonic 99 beer song (maybe the simplest naive implementation in Python 3)."""
+
+    REGULAR_VERSE = '''\
+    {n} bottles of beer on the wall, {n} bottles of beer
+    Take one down and pass it around, {n_minus_1} bottles of beer on the wall.\n
+    '''
+
+    ENDING_VERSES = '''\
+    2 bottles of beer on the wall, 2 bottles of beer.
+    Take one down and pass it around, 1 bottle of beer on the wall.\n
+    1 bottle of beer on the wall, 1 bottle of beer.
+    Take one down and pass it around, no more bottles of beer on the wall.\n
+    No more bottles of beer on the wall, no more bottles of beer.
+    Go to the store and buy some more, 99 bottles of beer on the wall.\n
+    '''
+    for n in range(99, 2, -1):
+        print(REGULAR_VERSE.format(n=n, n_minus_1=n - 1))
+    print(ENDING_VERSES)
 
 
 We do not talk about INTERCAL
