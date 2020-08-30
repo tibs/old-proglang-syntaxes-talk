@@ -7,7 +7,7 @@
 
     Presented at CamPUG_, virtually, 1st September 2020
 
-    Written using reStructuredText_.
+    Written in reStructuredText_.
 
     Converted to PDF slides using rst2pdf_.
 
@@ -272,7 +272,6 @@ function returns a single value (assigned to the function name)
 
 subroutine returns 0 or more values, by modifying the variables in its
 parameter list
-
 
 IF-THEN-ELSE
 ------------
@@ -586,7 +585,8 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
 https://rosettacode.org/wiki/Category:COBOL
 
 A more concise version that adheres to the minimum guidelines. Leading zeros
-are not suppressed. (OpenCOBOL - 1.1.0)
+are not suppressed. (OpenCOBOL - 1.1.0) - I believe this is COBOL 2002, hence
+the free format layout.
 
 .. code:: cobol
 
@@ -736,8 +736,8 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
   $)
 
 
-APL - ancestor of R
--------------------
+APL
+---
 
 IBM Selectric and golfball (picture would be nice) are mentioned on the APL
 wikipedia page.
@@ -1632,7 +1632,7 @@ Full acknowledgements for each code source are in the notes.
 Fin
 ---
 
-Written using reStructuredText_.
+Written in reStructuredText_.
 
 Converted to PDF slides using rst2pdf_.
 

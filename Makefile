@@ -2,7 +2,7 @@
 # are installed.
 
 RST2PDF=rst2pdf --break-level=1 \
-            --fit-literal-mode=overflow \
+            #--fit-literal-mode=overflow \
             -e preprocess
             #--font-path /Library/Fonts/Microsoft \
             #--font-path /System/Library/Fonts \
