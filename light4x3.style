@@ -15,7 +15,7 @@ pageTemplates:
     standardPage:
         frames: []
             [3%, 3%, 94%, 94%]
-        background: white.jpg
+        background: images/white.jpg
         showHeader: false
         showFooter: false
 

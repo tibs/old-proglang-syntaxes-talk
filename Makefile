@@ -1,9 +1,8 @@
 # This version of the Makefile assumes that rst2pdf and its dependencies
 # are installed.
 
-RST2PDF=rst2pdf --break-level=1 \
+RST2PDF=rst2pdf --break-level=1 -e preprocess
             #--fit-literal-mode=overflow \
-            -e preprocess
             #--font-path /Library/Fonts/Microsoft \
             #--font-path /System/Library/Fonts \
 

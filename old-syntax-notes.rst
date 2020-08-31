@@ -6,6 +6,9 @@ A talk on (what may now seem strange) syntax in older programming languages
 
 Written as a talk for CamPUG_
 
+.. contents::
+
+
 Introduction
 ============
 
@@ -37,30 +40,20 @@ investigations.
 
 .. Programming languages
 
-   FORTRAN IV                     **
-   LISP (S and M forms)           **
-   COBOL (briefly)                **
-   Snobol / Spitbol (probably)    **
-   BCPL                           **
-   APL                            **
-   Algol 68                       ** for stropping at least
-   RPG (maybe)
-   Smalltalk                      ** ideally
-   Occam (briefly)
-   Prolog                         ** maybe
-   Forth                          ** ideally
-   Tcl (maybe)
-   ABC                            -- just for appearance
-   Python                         -- just for 99 bottles explanation
-
-   That's really too many - even if I only spend 5 minutes on each (and
-   FORTRAN IV is longer than that) then that suggests at most 12 for an hour
-   speaking, and the above is 15.
-
-   Keeping just the marked items gives me 12, which may be doable.
-
-   Or, looking at it another way, no more than about 40 slides at most for
-   60 minutes, depending on how long I talk around each slide.
+   1957 FORTRAN / FORTRAN IV
+   1958 LISP
+   195x If-then-else
+   1959 COBOL
+   1960 (ish) Forth
+   1960 Algol 60 sqq and stropping
+   1962 ++ APL and J
+   1962 Snobol
+   1967 BCPL
+   1972 Prolog
+   1976 S and R
+   1980 Smalltalk
+   ABC
+   Python
 
 
 Plankalkül
@@ -131,8 +124,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#FORTRAN-IV
         stop
         end
 
-.. page::
-
 which I amend to give the (to me) more familiar:
 
 .. code:: fortran
@@ -155,8 +146,6 @@ which I amend to give the (to me) more familiar:
   ••••••END
 
 (amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
-
-.. page::
 
 or with actual spaces (which is easier to read)
 
@@ -198,8 +187,6 @@ FORTRAN DATA CARDS
                   1         2        7            8
     12345 | 6 | 7890123456789 .. .. 9012 | 34567890
 
-.. page::
-       
 * The first five characters are used for unique statement numbers. Numbers do
   not need to appear in sequence.  Any statement (except the END statement)
   may have a statement number.
@@ -320,8 +307,6 @@ programmers rapidly chose to use S-expressions, and M-expressions were
 abandoned. M-expressions surfaced again with short-lived attempts of MLisp[11]
 by Horace Enea and CGOL by Vaughan Pratt."""
 
-.. page::
-
 https://en.wikipedia.org/wiki/M-expression
 
 """McCarthy had planned to develop an automatic Lisp compiler (LISP 2) using
@@ -333,12 +318,23 @@ hand-coded an interpreter program that could execute S-expressions.[2] This
 program was adopted by McCarthy's research group, establishing S-expressions
 as the dominant form of Lisp."""
 
-The Lisp 1.5 manual does, of course, talk about both forms.
+The Lisp 1.5 manual does, of course, talk about both forms - for instance the
+M-expression:
 
-.. page::
+.. code::
+
+   [atom[x] → x; T → ff[car[x]]]
+
+becomes:
+
+.. code:: lisp
+
+   (COND ((ATOM X) X)
+       ((QUOTE T) (FF (CAR X))))
 
 From
 http://www.softwarepreservation.org/projects/LISP/lisp2/SP-2450-SUMSQUARE_LCS.pdf
+we have a LISP 2 M-expression:
 
 .. code::
 
@@ -360,8 +356,6 @@ giving the result::
 
   69.0
 
-.. page::
-
 or, of course!
 
 Common Lisp
@@ -379,7 +373,7 @@ https://rosettacode.org/wiki/Sum_of_squares#Scheme
 
 .. code:: scheme
 
-  define (sum-of-squares l)
+  (define (sum-of-squares l)
     (apply + (map * l l)))
 
 
@@ -419,8 +413,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/l.html#LISP
   (foo 99)))
 
 
-.. page::
-
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
   
 .. code:: scheme
@@ -448,8 +440,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
   (beer 99)
 
 
-.. page::
-
 https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
 
 Common Lisp
@@ -465,8 +455,6 @@ Common Lisp
                     bottles (1- bottles))))
 
   (bottles 99)
-
-.. page::
 
 Scheme
 
@@ -616,8 +604,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
                                   VALUE "BOTTLES OF BEER IN THE WALL".
   *
 
-.. page::
-
 .. code:: cobol
 
   PROCEDURE DIVISION.
@@ -648,8 +634,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           MOVE BOTTLES TO NUMBER-OF-BEERS-3.
           WRITE BEERS-OUT FROM LINE2.
 
-.. page::
-
 https://rosettacode.org/wiki/Category:COBOL
 
 A more concise version that adheres to the minimum guidelines. Leading zeros
@@ -675,6 +659,318 @@ the free format layout.
       display space
     end-perform.
 
+Forth
+=====
+
+A stack based language.
+
+(maybe mention PostScript and thus also PDF)
+
+http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#Forth
+
+.. code:: forth
+
+  \ Forth version of the 99 Bottles program.
+  \ Dan Reish, dreish@izzy.net
+
+  : .bottles ( n -- n-1 )
+    dup 1 = IF  ." One bottle of beer on the wall," CR
+                ." One bottle of beer," CR
+                ." Take it down," 
+    ELSE  dup . ." bottles of beer on the wall," CR
+          dup . ." bottles of beer," CR
+          ." Take one down," 
+    THEN
+    CR
+    ." Pass it around," CR
+    1-
+    ?dup IF  dup 1 = IF  ." One bottle of beer on the wall;" 
+              ELSE  dup . ." bottles of beer on the wall;" 
+              THEN
+          ELSE  ." No more bottles of beer on the wall." 
+    THEN
+    CR
+  ;
+
+  : nbottles ( n -- )
+    BEGIN  .bottles  ?dup NOT UNTIL
+  ;
+
+  99 nbottles
+
+https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
+
+.. code:: forth
+
+  :noname   dup . ." bottles" ;
+  :noname       ." 1 bottle"  ;
+  :noname ." no more bottles" ;
+  create bottles , , ,
+
+  : .bottles  dup 2 min cells bottles + @ execute ;
+  : .beer     .bottles ."  of beer" ;
+  : .wall     .beer ."  on the wall" ;
+  : .take     ." Take one down, pass it around" ;
+  : .verse    .wall cr .beer cr
+          1- .take cr .wall cr ;
+  : verses    begin cr .verse ?dup 0= until ;
+
+  99 verses
+
+or create a beer language and write the program:
+
+.. code:: forth
+
+  DECIMAL
+  : BOTTLES ( n -- )
+          DUP
+          CASE
+          1 OF    ." One more bottle " DROP ENDOF
+          0 OF    ." NO MORE bottles " DROP ENDOF
+                  . ." bottles "    \ DEFAULT CASE
+          ENDCASE ;
+
+  : ,   [CHAR] , EMIT  SPACE 100 MS CR ;
+  : .   [CHAR] . EMIT  300 MS  CR CR CR ;
+
+  : OF       ." of "   ;     : BEER     ." beer " ;
+  : ON       ." on "   ;     : THE      ." the "  ;
+  : WALL     ." wall" ;      : TAKE     ." take " ;
+  : ONE      ." one "  ;     : DOWN     ." down, " ;
+  : PASS     ." pass " ;     : IT       ." it "   ;
+  : AROUND   ." around" ;
+
+  : POPONE    1 SWAP CR ;
+  : DRINK     POSTPONE DO ; IMMEDIATE
+  : ANOTHER   S" -1 +LOOP" EVALUATE ; IMMEDIATE
+  : HOWMANY   S" I " EVALUATE ; IMMEDIATE
+  : ONELESS   S" I 1- " EVALUATE ; IMMEDIATE
+  : HANGOVER    ." :-("  CR QUIT ;
+
+  : BEERS ( n -- )   \ Usage:  99 BEERS
+        POPONE
+        DRINK
+          HOWMANY BOTTLES OF BEER ON THE WALL ,
+          HOWMANY BOTTLES OF BEER ,
+          TAKE ONE DOWN PASS IT AROUND ,
+          ONELESS BOTTLES OF BEER ON THE WALL .
+        ANOTHER 
+        HANGOVER ;
+
+The Algols - a selection
+========================
+
+ALGOL 60 - Tony Hoare said "Here is a language so far ahead of its time that
+it was not only an improvement on its predecessors but also on nearly all its
+successors."
+
+ALGOL 68 - seen at the time as a very complex language
+
+ALGOL W - Wirth's proposed successor to ALGOL 60, ancestor of PASCAL and
+Modula-2
+
+Simula 67 - ALGOL 60 with classes
+
+Ada - designed for safety and developing large systems
+
+Stropping
+=========
+
+https://en.wikipedia.org/wiki/Stropping_(syntax)
+
+Nowadays, we're used to programming languages having reserved keywords. For
+instance, in Python you can't have a variable called ``def`` or ``for``.
+
+But as we've already seen with FORTRAN IV, that need not be the case - FORTRAN
+decided its keywords based on context.
+
+In the ALGOL derived languages, it was common to use **stropping** to delimit
+keywords.
+
+In the ALGOL languages, bold text would be used for keywords in documentation:
+
+      **int** a real int = 3;
+
+At the time, that was impossible to use in actual program texts.
+
+*Stropping* (from "apostrophe") uses extra characters to mark keywords.
+
+ALGOL 60 used QUOTE stropping
+
+.. code:: algol
+
+    'INT' intval = 3;
+
+ALGOL 68 typically used UPPER stropping
+
+.. code:: algol
+
+    INT a real int = 3;
+
+If the character set was limited to 6 bits, then there was only one case,
+so POINT stropping could be used:
+
+.. code:: algol
+
+    .INT A REAL INT = 3;
+
+Algol 68 could also use RES "stropping"; reserved words, as we'd expect
+
+.. code:: algol
+
+    int a_real_int = 3;  # there are 61 accepted reserved words #
+
+And, as the wikipedia page explains, there were other approaches as well.
+
+Algol 68: UPPER stropping
+-------------------------
+
+.. code:: algol68
+
+    # Add an element to the end of the list #
+    PROC append = ( REF LIST list, ELEMENT val ) VOID:
+    BEGIN
+      IF list IS empty
+      THEN
+        list := HEAP NODE := ( val, empty )
+      ELSE
+        REF LIST tail := list;
+        WHILE next OF tail ISNT empty
+        DO
+          tail := next OF tail
+        OD;
+        next OF tail := HEAP NODE := ( val, empty )
+      FI
+    END;
+  
+APL and J
+=========
+
+IBM Selectric and golfball (picture would be nice) are mentioned on the APL
+wikipedia page.
+
+https://en.wikipedia.org/wiki/APL_(programming_language)#Mathematical_notation
+
+  A mathematical notation for manipulating arrays was developed by
+  Kenneth E. Iverson, starting in 1957 at Harvard University. In 1960, he
+  began work for IBM where he developed this notation with Adin Falkoff and
+  published it in his book A Programming Language in 1962.
+
+Early implementations had to use English reserved words for functions and
+operators.
+
+https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
+
+  A key development in the ability to use APL effectively, before the wide use
+  of cathode ray tube (CRT) terminals, was the development of a special IBM
+  Selectric typewriter interchangeable typing element with all the special APL
+  characters on it. This was used on paper printing terminal workstations
+  using the Selectric typewriter and typing element mechanism, such as the IBM
+  1050 and IBM 2741 terminal. Keycaps could be placed over the normal keys to
+  show which APL characters would be entered and typed when that key was
+  struck. For the first time, a programmer could type in and see proper APL
+  characters as used in Iverson's notation and not be forced to use awkward
+  English keyword representations of them. Falkoff and Iverson had the special
+  APL Selectric typing elements, 987 and 988, designed in late 1964, although
+  no APL computer system was available to use them. Iverson cited Falkoff
+  as the inspiration for the idea of using an IBM Selectric typing element for
+  the APL character set.
+
+  Many APL symbols, even with the APL characters on the Selectric typing
+  element, still had to be typed in by over-striking two extant element
+  characters. An example is the grade up character, which had to be made from
+  a delta (shift-H) and a Sheffer stroke (shift-M). This was necessary because
+  the APL character set was much larger than the 88 characters allowed on the
+  typing element, even when letters were restricted to upper-case (capitals).
+
+APL -> J, using ASCII with digraphs instead of special symbols (basically, it
+adds dot and colon to things to make new symbols)
+
+APL -> S, a stastical programming language
+
+R is an implementation of S with some extensions. Much S code should run
+unaltered.
+
+https://rosettacode.org/wiki/99_Bottles_of_Beer#APL
+
+Classic version:
+
+.. I never could figure out how to display this with pandoc/XeLaTeX, so am
+.. resorting to a screen shot - and I hope that square glyph in the screenshot
+.. is meant to be a square!
+..
+.. And now I'm using rst2pdf, which also doesn't default to coping, I've
+.. already *got* the screenshot...
+..
+..  bob  ←  { (⍕⍵), ' bottle', (1=⍵)↓'s of beer'}
+..  bobw ←  {(bob ⍵) , ' on the wall'}
+..  beer ←  { (bobw ⍵) , ', ', (bob ⍵) , '; take one down and pass it around, ', bobw ⍵-1}
+..  ↑beer¨ ⌽(1-⎕IO)+⍳99
+
+.. image:: images/apl-larger.png
+   :scale: 150%
+   :alt: APL code
+
+and its equivalent in J
+
+https://rosettacode.org/wiki/99_Bottles_of_Beer#J
+
+.. code:: j
+
+  bob =: ": , ' bottle' , (1 = ]) }. 's of beer'"_
+  bobw=: bob , ' on the wall'"_
+  beer=: bobw , ', ' , bob , '; take one down and pass it around, ' , bobw@<:
+  beer"0 >:i.-99
+  
+---------
+
+* https://en.wikipedia.org/wiki/APL_(programming_language)
+* https://en.wikipedia.org/wiki/J_(programming_language)
+
+Initially designed as a language for thinking about problems, and described in
+the book "A Programming Language" in 1962. It was used as a notation for
+thinking about problems, such as describing computer systems.
+
+The first use of an implementation using actual APL symbology was in 1966.
+
+------
+
+https://en.wikipedia.org/wiki/APL_(programming_language)#Mathematical_notation
+
+  A mathematical notation for manipulating arrays was developed by
+  Kenneth E. Iverson, starting in 1957 at Harvard University. In 1960, he
+  began work for IBM where he developed this notation with Adin Falkoff and
+  published it in his book A Programming Language in 1962.
+
+Early implementations had to use English reserved words for functions and
+operators.
+
+https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
+
+  A key development in the ability to use APL effectively, before the wide use
+  of cathode ray tube (CRT) terminals, was the development of a special IBM
+  Selectric typewriter interchangeable typing element with all the special APL
+  characters on it. This was used on paper printing terminal workstations
+  using the Selectric typewriter and typing element mechanism, such as the IBM
+  1050 and IBM 2741 terminal. Keycaps could be placed over the normal keys to
+  show which APL characters would be entered and typed when that key was
+  struck. For the first time, a programmer could type in and see proper APL
+  characters as used in Iverson's notation and not be forced to use awkward
+  English keyword representations of them. Falkoff and Iverson had the special
+  APL Selectric typing elements, 987 and 988, designed in late 1964, although
+  no APL computer system was available to use them. Iverson cited Falkoff
+  as the inspiration for the idea of using an IBM Selectric typing element for
+  the APL character set.
+
+  Many APL symbols, even with the APL characters on the Selectric typing
+  element, still had to be typed in by over-striking two extant element
+  characters. An example is the grade up character, which had to be made from
+  a delta (shift-H) and a Sheffer stroke (shift-M). This was necessary because
+  the APL character set was much larger than the 88 characters allowed on the
+  typing element, even when letters were restricted to upper-case (capitals).
+
+APL -> J, using ASCII with digraphs instead of special symbols (basically,
+it adds dot and colon to things to make new symbols)
 
 SNOBOL4
 =======
@@ -732,64 +1028,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Snobol
           OUTPUT = '99 BOTTLES OF BEER'
   END
 
-.. page::
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#SNOBOL4
-
-Works with: Macro Spitbol and CSnobol
-
-Function version with string composition. Function returns one verse for x
-bottles. Correctly handles bottle/bottles.
-
-.. code:: snobol
-
-          define('bottles(x)')
-          nl = char(13) char(10) ;* Win/DOS, change as needed
-          s2 = ' of beer'; s3 = ' on the wall'
-          s4 = 'Take one down, pass it around'
-          s5 = 'Go to the store, get some more' :(bottles_end)
-  bottles s1 = (s1 = ' Bottle') ne(x,1) 's'
-          output = nl x s1 s2 s3 nl x s1 s2
-          x = gt(x,0) x - 1 :f(done)
-          s1 = (s1 = ' Bottle') ne(x,1) 's'
-          output = s4 nl x s1 s2 s3 :(return)
-  done    output = s5 nl 99 s1 s2 s3 :(return)
-  bottles_end
-
-  *       # Test and display, only 2 bottles!
-          n = 2
-  loop    bottles(n); n = gt(n,0) n - 1 :s(loop)
-  end
-
-
-Spitbol
--------
-
-Not sure if worth mentioning - probably either this or Snobol, unless the
-difference is interesting?
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Spitbol
-  
-.. code:: spitbol
-
-	
-  * MaxSPITBOL version (SPITBOL implementation on
-  * the Macintosh from Catspaw, Inc. (Salida, CO).
-  * NOTE:  I have no connection w/them other than being
-  * a long-time satisfied user of their product
-  * D.H.  <hedges@pilot.njin.net>
-
-      p0 = "NO MORE" ;  p1 = " BOTTLE" ; p2 = "S" ; p3 = " OF BEER"
-      p4 = " ON THE WALL" ; p5 = "TAKE ONE DOWN, PASS IT AROUND"
-
-      b = 99
-      p6 = ((NE(b,0) b, p0) p1 (NE(b,1) p2,) p3)
-  A1   OUTPUT = p6 p4 ; OUTPUT = p6 ; OUTPUT = p5
-      b = b - 1
-      p6 = ((NE(b,0) b, p0) p1 (NE(b,1) p2,) p3)
-      OUTPUT = p6 p4 ; OUTPUT = ; NE(b,0)                   :S(A1)
-  END
-
 
 BCPL
 ====
@@ -830,8 +1068,6 @@ Also:
 * labels *are* values, and since everything is a word, you can do arithmetic
   on them.
 
-.. page::
-
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
 
 .. code:: bcpl
@@ -858,109 +1094,88 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/b.html#BCPL
   $)
 
 
-How many bits to a character?
-=============================
+Prolog
+======
 
-Well, likely 6, 7 or 8...
-
-* ICL machines used 6 bit characters, and the first BCPL compiler used 6-bit
-  BCD. That means you only get one case (so not upper and lowed) and need to
-  have some way of "escaping" the other case.
-
-* ASCII is a 7-bit code. In 8-bit bytes (octets), the 8th bit would be used as
-  a parity check.
-
-* EBCDIC is/was an 8 bit code.
-
-Nowadays, of course, we have Unicode and UTF-8.
-  
-APL and related languages
-=========================
-
-------
-
-IBM Selectric and golfball (picture would be nice) are mentioned on the APL
-wikipedia page.
-
-https://en.wikipedia.org/wiki/APL_(programming_language)#Mathematical_notation
-
-  A mathematical notation for manipulating arrays was developed by
-  Kenneth E. Iverson, starting in 1957 at Harvard University. In 1960, he
-  began work for IBM where he developed this notation with Adin Falkoff and
-  published it in his book A Programming Language in 1962.
-
-Early implementations had to use English reserved words for functions and
-operators.
-
-https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
-
-  A key development in the ability to use APL effectively, before the wide use
-  of cathode ray tube (CRT) terminals, was the development of a special IBM
-  Selectric typewriter interchangeable typing element with all the special APL
-  characters on it. This was used on paper printing terminal workstations
-  using the Selectric typewriter and typing element mechanism, such as the IBM
-  1050 and IBM 2741 terminal. Keycaps could be placed over the normal keys to
-  show which APL characters would be entered and typed when that key was
-  struck. For the first time, a programmer could type in and see proper APL
-  characters as used in Iverson's notation and not be forced to use awkward
-  English keyword representations of them. Falkoff and Iverson had the special
-  APL Selectric typing elements, 987 and 988, designed in late 1964, although
-  no APL computer system was available to use them. Iverson cited Falkoff
-  as the inspiration for the idea of using an IBM Selectric typing element for
-  the APL character set.
-
-  Many APL symbols, even with the APL characters on the Selectric typing
-  element, still had to be typed in by over-striking two extant element
-  characters. An example is the grade up character, which had to be made from
-  a delta (shift-H) and a Sheffer stroke (shift-M). This was necessary because
-  the APL character set was much larger than the 88 characters allowed on the
-  typing element, even when letters were restricted to upper-case (capitals).
-
-.. page::
-
-APL -> J, using ASCII with digraphs instead of special symbols (basically, it
-adds dot and colon to things to make new symbols)
-
-APL -> S, a stastical programming language
-
-R is an implementation of S with some extensions. Much S code should run
-unaltered.
-
-.. page::
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#APL
-
-Classic version:
-
-.. I never could figure out how to display this with pandoc/XeLaTeX, so am
-.. resorting to a screen shot - and I hope that square glyph in the screenshot
-.. is meant to be a square!
-..
-.. And now I'm using rst2pdf, which also doesn't default to coping, I've
-.. already *got* the screenshot...
-..
-..  bob  ←  { (⍕⍵), ' bottle', (1=⍵)↓'s of beer'}
-..  bobw ←  {(bob ⍵) , ' on the wall'}
-..  beer ←  { (bobw ⍵) , ', ', (bob ⍵) , '; take one down and pass it around, ', bobw ⍵-1}
-..  ↑beer¨ ⌽(1-⎕IO)+⍳99
-
-.. image:: images/apl-larger.png
-   :scale: 150%
-   :alt: APL code
-
-and its equivalent in J
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#J
-
-.. code:: j
-
-  bob =: ": , ' bottle' , (1 = ]) }. 's of beer'"_
-  bobw=: bob , ' on the wall'"_
-  beer=: bobw , ', ' , bob , '; take one down and pass it around, ' , bobw@<:
-  beer"0 >:i.-99
+Full stop to end expressions/statements, not semicolon
 
 
-.. page::
+(I've heard people say Erlang is inspired by Prolog in some sense?)
+
+http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/e.html#Erlang
+
+
+Prolog
+
+http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/p.html#Prolog
+      
+.. code:: prolog
+
+  % 99 bottles of beer.
+  % Remko Troncon <spike@kotnet.org>
+
+  bottles :-
+      bottles(99).
+
+  bottles(1) :- 
+      write('1 bottle of beer on the wall, 1 bottle of beer,'), nl,
+      write('Take one down, and pass it around,'), nl,
+      write('Now they are alle gone.'), nl.
+  bottles(X) :-
+      X > 1,
+      write(X), write(' bottles of beer on the wall,'), nl,
+      write(X), write(' bottles of beer,'), nl,
+      write('Take one down and pass it around,'), nl,
+      NX is X - 1,
+      write(NX), write(' bottles of beer on the wall.'), nl, nl,
+      bottles(NX).
+
+
+Prolog - works with SWI Prolog
+
+https://rosettacode.org/wiki/99_Bottles_of_Beer/Prolog
+
+.. code:: prolog
+
+  bottles(0):-!.
+  bottles(X):-
+      writef('%t bottles of beer on the wall \n',[X]),
+      writef('%t bottles of beer\n',[X]),
+      write('Take one down, pass it around\n'),
+      succ(XN,X),
+      writef('%t bottles of beer on the wall \n\n',[XN]),
+      bottles(XN).
+
+  :- bottles(99).
+
+
+or, handling plurals:
+
+.. code:: prolog
+
+  line1(X):- line2(X),write(' on the wall'). 
+  line2(0):- write('no more bottles of beer').
+  line2(1):- write('1 bottle of beer').
+  line2(X):- writef('%t bottles of beer',[X]).
+  line3(1):- write('Take it down, pass it around').
+  line3(X):- write('Take one down, pass it around').
+  line4(X):- line1(X).
+
+  bottles(0):-!.
+  bottles(X):-	
+      succ(XN,X),
+      line1(X),nl,
+      line2(X),nl,
+      line3(X),nl,
+      line4(XN),nl,nl,
+      !,
+      bottles(XN).
+
+  :- bottles(99).
+
+
+S and R
+=======
 
 https://rosettacode.org/wiki/99_Bottles_of_Beer#R
 
@@ -978,8 +1193,6 @@ Simple looping solution in R
   }
   song(99)#play the song by calling the function
           
-
-.. page::
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#S-Plus
 
@@ -1002,39 +1215,6 @@ S - is this the right S?
               }
   }
 
-.. page::
-
-J
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/j.html#J
-
-.. code:: j
-
-  See http://www.cs.trinity.edu/About/The_Courses/cs2322/
-
-  Date: Thu, 8 Mar 2001 09:23:02 -0500
-  From: Roger Hui 
-  Reply-To: forum@jsoftware.com
-  To: APL Mailing List , J Forum , TimTroyR@ionet.net
-  Subject: Jforum: Re: New Scientist Puzzle and Oddball Languages
-
-  NB. a solution in J (http://www.jsoftware.com) to the 99 Bottles of Beer problem.
-
-    bob =: ": , ' bottle'"_ , (1: = ]) }. 's of beer'"_
-    bobw=: bob , ' on the wall'"_
-    beer=: bobw , ', '"_ , bob , '; take one down and pass it around, '"_ , bobw@<:
-
-  NB. For example:
-
-      beer"0 >:i.-5
-  5 bottles of beer on the wall, 5 bottles of beer; take one down and pass it around, 4 bottles of beer on the wall
-  4 bottles of beer on the wall, 4 bottles of beer; take one down and pass it around, 3 bottles of beer on the wall
-  3 bottles of beer on the wall, 3 bottles of beer; take one down and pass it around, 2 bottles of beer on the wall
-  2 bottles of beer on the wall, 2 bottles of beer; take one down and pass it around, 1 bottle of beer on the wall
-  1 bottle of beer on the wall, 1 bottle of beer; take one down and pass it around, 0 bottles of beer on the wall
-
-.. page::
-  
 R
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/r.html#R
@@ -1059,56 +1239,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/r.html#R
 
 ------
 
-APL and J
----------
-
-* https://en.wikipedia.org/wiki/APL_(programming_language)
-* https://en.wikipedia.org/wiki/J_(programming_language)
-
-Initially designed as a language for thinking about problems, and described in
-the book "A Programming Language" in 1962. It was used as a notation for
-thinking about problems, such as describing computer systems.
-
-The first use of an implementation using actual APL symbology was in 1966.
-
-------
-
-https://en.wikipedia.org/wiki/APL_(programming_language)#Mathematical_notation
-
-  A mathematical notation for manipulating arrays was developed by
-  Kenneth E. Iverson, starting in 1957 at Harvard University. In 1960, he
-  began work for IBM where he developed this notation with Adin Falkoff and
-  published it in his book A Programming Language in 1962.
-
-Early implementations had to use English reserved words for functions and
-operators.
-
-https://en.wikipedia.org/wiki/APL_(programming_language)#Hardware
-
-  A key development in the ability to use APL effectively, before the wide use
-  of cathode ray tube (CRT) terminals, was the development of a special IBM
-  Selectric typewriter interchangeable typing element with all the special APL
-  characters on it. This was used on paper printing terminal workstations
-  using the Selectric typewriter and typing element mechanism, such as the IBM
-  1050 and IBM 2741 terminal. Keycaps could be placed over the normal keys to
-  show which APL characters would be entered and typed when that key was
-  struck. For the first time, a programmer could type in and see proper APL
-  characters as used in Iverson's notation and not be forced to use awkward
-  English keyword representations of them. Falkoff and Iverson had the special
-  APL Selectric typing elements, 987 and 988, designed in late 1964, although
-  no APL computer system was available to use them. Iverson cited Falkoff
-  as the inspiration for the idea of using an IBM Selectric typing element for
-  the APL character set.
-
-  Many APL symbols, even with the APL characters on the Selectric typing
-  element, still had to be typed in by over-striking two extant element
-  characters. An example is the grade up character, which had to be made from
-  a delta (shift-H) and a Sheffer stroke (shift-M). This was necessary because
-  the APL character set was much larger than the 88 characters allowed on the
-  typing element, even when letters were restricted to upper-case (capitals).
-
-APL -> J, using ASCII with digraphs instead of special symbols (basically,
-it adds dot and colon to things to make new symbols)
 
 S and R
 -------
@@ -1130,170 +1260,12 @@ People here are probably more familiar with R, which is an implementation of S
   Richard Becker's `A Brief History of S`_ indicates that they were very well
   aware of APL, but clearly S is not a descendant of APL.
 
-.. _`A Brief History of S`:: https://www.math.uwaterloo.ca/~rwoldfor/software/R-code/historyOfS.pdf
+.. _`A Brief History of S`: https://www.math.uwaterloo.ca/~rwoldfor/software/R-code/historyOfS.pdf
 
 `APL in R`_ by Jan de Leeuw and Masanao Yajima, 2016, is an online book that
 presents R code for APL array operations.
 
 .. _`APL in R`: https://bookdown.org/jandeleeuw6/apl/
-
-Algol 68
-========
-
-* https://en.wikipedia.org/wiki/ALGOL_68
-* https://opensource.com/article/20/6/algol68 - Exploring Algol 68 in the 21st
-  century
-* http://www.algol68.org/ - a site dedicated to matters related to the programming language
-* https://jmvdveer.home.xs4all.nl/en.algol-68-genie.html for modern compilers
-
-The first working compiler was for `ALGOL 68-R` (an extended subset of the
-language), in 1970 - although some of the restrictions were adopted into the
-revised report on ALGOL 68.
-
-.. _`ALGOL 68-R`: https://en.wikipedia.org/wiki/ALGOL_68-R
-  
-* Whitespace in variable names
-* "If it compiles, it runs"
-* ``REF``
-* Standards arguments (the split in the Algol community) and the difficulty of
-  writing a compiler (at the time)
-
------
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/a.html#Algol-68
-
-.. code:: algol68
-
-  # 99 Bottles of Beer                         #
-  # by Otto Stolz <Otto.Stolz@Uni-Konstanz.de> #
-  ( PROC width = (INT x) INT: (x>9 | 2 | 1)
-  ; FOR i FROM 99 BY -1 TO 1
-    DO  printf ( ( $ 2l n(width(i))d
-                  , x "bottle" b("","s") x "of beer on the wall,"
-                  , x n(width(i))d
-                  , x "bottle" b("","s") x "of beer."
-                  , l "Take one down, pass it around,"
-                  , x n(width(i-1))d
-                  , x "bottle" b("","s") x "of beer."
-                  $
-                , i  , i=1
-                , i  , i=1
-                , i-1, i=2
-              ) )
-    OD
-  )
-
-.. page::
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#ALGOL_68
-
-Works with ALGOL 68 version Standard (no extensions to language used) and
-with ALGOL 68G version Any (tested with release mk15-0.8b.fc9.i386)
-
-.. code:: algol68
-
-  main:(
-    FOR bottles FROM 99 TO 1 BY -1 DO
-      printf(($z-d" bottles of beer on the wall"l$, bottles));
-      printf(($z-d" bottles of beer"l$, bottles));
-      printf(($"Take one down, pass it around"l$));
-      printf(($z-d" bottles of beer on the wall"ll$, bottles-1))
-    OD
-  )
-
-
-----
-
-Stropping
-=========
-
-https://en.wikipedia.org/wiki/Stropping_(syntax)
-
-Nowadays, we're used to programming languages having reserved keywords. For
-instance, in Python you can't have a variable called ``def`` or ``for``.
-
-But as we've already seen with FORTRAN IV, that need not be the case - FORTRAN
-decided its keywords based on context.
-
-In the ALGOL derived languages, it was common to use **stropping** to delimit
-keywords.
-
-For instance, in Algol 68:
-
-* In documentation, bold text would be used for keywords:
-
-      *int* a real int = 3;  # the *strict* language #
-
-  At the time, that was impossible to use in actual program texts.
-
-* UPPER stropping was what I was taught to use:
-
-  .. code:: algol
-
-      INT a real int = 3;  # UPPER stropping style #
-
-* If the character set was limited to 6 bits, then it would be inconvenient to
-  use the uppercase / lowercase distinction (since one of those would need
-  every character escaping). So POINT stropping could be use:
-
-  .. code:: algol
-
-      .INT A REAL INT = 3; # POINT stropping style #
-
-* ALGOL 60 commonly used QUOTE stropping:
-
-  .. code:: algol
-            
-      'INT'A REAL INT = 3; # QUOTE stropping style #
-
-* Algol 68 also allowed keywords to be treated as reserved words, as we'd
-  expect nowadays:
-
-  .. code:: algol
-            
-      int a_real_int = 3;  # RES stropping style, there are 61 accepted reserved words #
-
-And, as the wikipedia page explains, there were other approaches as well.
-
-
-RPG
-===
-
--- *Probably leave out* --
-
-RPG/400
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/r.html#RPG/400
-
-The following as presented appears to start with 5 spaces on each line.
-
-.. code:: rpg
-
-     H*
-     H* RPG/400 VERSION OF THE BOTTLES PROGRAM *
-     H*
-     FSCREEN  O   F      80            WORKSTN
-     C                     MOVE 100       X       30
-     C           X         DOWGE0
-     C                     EXCPT
-     C                     SUB  1         X
-     C                     END
-     C                     SETON                     LR
-
-.. page::
-     
-.. code:: rpg
-          
-     OSCREEN  E
-     O                         X          3
-     O                                   26 'BOTTLES OF BEER ON THE'
-     O                                   31 'WALL,'
-     O                         X         36
-     O                                   53 'BOTTLES OF BEER'
-     O        E
-     O                                   22 'TAKE ONE DOWN AND PASS'
-     O                                   32 'IT AROUND'
-
 
 
 Smalltalk
@@ -1329,8 +1301,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#SmallTalk
 
 I think that's rather elegant.
 
-.. page::
-
 https://rosettacode.org/wiki/99_Bottles_of_Beer#Smalltalk
 
 A straightforward approach
@@ -1353,403 +1323,12 @@ A straightforward approach
                       (v ~~ 0) ifTrue: [ Transcript show: (sr at:4) ; cr. ].
     ].
 
-.. page::
-
 https://pharo.org/ - squeak variant
 
 
-Occam
-=====
 
--- *Probably leave out* --
 
-https://en.wikipedia.org/wiki/Occam_(programming_language)
 
-(briefly)
-
-Signficant indentation!
-
-http://concurrency.cc/docs/ - documentation for occam-pi, a superset of occam2
-that will run on an arduino. Last blogpost on the site was in 2015.
-
-Designed for parallel programming on a network of transputer chips.
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
-
-.. code:: occam
-
-  -- compiled with the University of Kent "kroc" compiler
-  -- Tony Curtis <Tony.Curtis@vcpc.univie.ac.at> 1997
-  --
-  PROC beer (CHAN OF BYTE key, screen, error)
-    VAL INT BEERS IS 99 :                       -- big fridge!
-    #USE "tty_utils.tco"
-    PROC sorp (VAL INT n, CHAN OF BYTE out)     -- singular or plural?
-      IF
-        n > 1
-          out.string ("s", 1, out)
-        TRUE
-          SKIP
-    :
-
-.. page::
-
-.. code:: occam
-          
-    PROC sayit (VAL INT n, CHAN OF BYTE out)     -- text for each iteration
-      SEQ
-        out.number (n, 1, out)
-        out.string (" bottle", 1, out)
-        sorp (n, out)
-        out.string (" of beer on the wall, ", 1, out)
-        out.number (n, 1, out)
-        out.string (" bottle", 1, out)
-        sorp (n, out)
-        out.string (" of beer.", 1, out)
-        out.string ("*c*n", 1, out)
-        out.string ("Take one down, pass it around, ", 1, out)
-        VAL INT next IS  n - 1 :
-        IF
-          next > 0
-            SEQ
-              out.number (next, 1, out)
-              out.string (" bottle", 1, out)
-              sorp (next, out)
-              out.string (" of beer on the wall.", 1, out)
-          TRUE
-            out.string ("no bottles of beer on the wall.", 1, out)
-        out.string ("*c*n", 1, out)
-    :
-
-.. page::
-
-.. code:: occam
-
-    PROC beers (VAL INT nbeers, CHAN OF BYTE out)
-      INT b :
-      SEQ
-        b := nbeers
-        WHILE b > 0
-          SEQ
-            sayit (b, out)
-            b := b - 1
-    :
-    beers (BEERS, screen)
-  :
-
-
-Prolog
-======
-
-Full stop to end expressions/statements, not semicolon
-
-
-(I've heard people say Erlang is inspired by Prolog in some sense?)
-
-.. page::
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/e.html#Erlang
-
-.. code:: erlang
-
-	
-  <a href=http://www.ericsson.se/cslab/erlang/>Erlang</a> is a language used for real-time control systems.
-
-  % ---------------------------------------------------------------
-  % Erlang version of the beer song
-  % Kent Engström, kenen@ida.liu.se
-  % ---------------------------------------------------------------
-  % See http://www.ericsson.se/cslab/erlang/ for Erlang information
-  % ---------------------------------------------------------------
-
-  -module(beer).
-  -export([song/0]).
-
-  song() ->
-      song(100).
-
-  song(0) ->
-      done;
-  song(N) ->
-      Bottles=bottles(N),
-      Bottles1=bottles(N-1),
-      io:format("~s of beer on the wall, ~s of beer.~n",
-                [Bottles,Bottles]),
-      io:format("Take one down and pass it around, ~s of beer on the wall.~n",
-                [Bottles1]),
-      song(N-1).
-
-  bottles(0)->
-      "no more bottles";
-  bottles(1)->
-      "1 bottle";
-  bottles(N)->
-      lists:append(integer_to_list(N)," bottles").
-
-.. page::
-
-Prolog
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/p.html#Prolog
-      
-.. code:: prolog
-
-  % 99 bottles of beer.
-  % Remko Troncon <spike@kotnet.org>
-
-  bottles :-
-      bottles(99).
-
-  bottles(1) :- 
-      write('1 bottle of beer on the wall, 1 bottle of beer,'), nl,
-      write('Take one down, and pass it around,'), nl,
-      write('Now they are alle gone.'), nl.
-  bottles(X) :-
-      X > 1,
-      write(X), write(' bottles of beer on the wall,'), nl,
-      write(X), write(' bottles of beer,'), nl,
-      write('Take one down and pass it around,'), nl,
-      NX is X - 1,
-      write(NX), write(' bottles of beer on the wall.'), nl, nl,
-      bottles(NX).
-
-.. page::
-
-Erlang
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#Erlang
-
-.. code:: erlang
-
-  -module(beersong).
-  -export([sing/0]).
-  -define(TEMPLATE_0, "~s of beer on the wall, ~s of beer.~nGo to the store and buy some more, 99
-  bottles of beer on the wall.~n").
-  -define(TEMPLATE_N, "~s of beer on the wall, ~s of beer.~nTake one down and pass it around, ~s of
-  beer on the wall.~n~n").
-
-  create_verse(0)      -> {0, io_lib:format(?TEMPLATE_0, phrase(0))};
-  create_verse(Bottle) -> {Bottle, io_lib:format(?TEMPLATE_N, phrase(Bottle))}.
-
-  phrase(0)      -> ["No more bottles", "no more bottles"];
-  phrase(1)      -> ["1 bottle", "1 bottle", "no more bottles"];
-  phrase(2)      -> ["2 bottles", "2 bottles", "1 bottle"];
-  phrase(Bottle) -> lists:duplicate(2, integer_to_list(Bottle) ++ " bottles") ++
-  [integer_to_list(Bottle-1) ++ " bottles"].
-
-  bottles() -> lists:reverse(lists:seq(0,99)).
-
-  sing() ->
-      lists:foreach(fun spawn_singer/1, bottles()),
-      sing_verse(99).
-
-  spawn_singer(Bottle) ->
-      Pid = self(), 
-      spawn(fun() -> Pid ! create_verse(Bottle) end).
-
-  sing_verse(Bottle) ->
-      receive
-          {_, Verse} when Bottle == 0 ->
-              io:format(Verse);
-          {N, Verse} when Bottle == N ->
-              io:format(Verse),
-              sing_verse(Bottle-1)
-      after 
-          3000 ->
-              io:format("Verse not received - re-starting singer~n"),
-              spawn_singer(Bottle),
-              sing_verse(Bottle)
-      end.
-
-.. page::
-
-Prolog - works with SWI Prolog
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer/Prolog
-
-.. code:: prolog
-
-  bottles(0):-!.
-  bottles(X):-
-      writef('%t bottles of beer on the wall \n',[X]),
-      writef('%t bottles of beer\n',[X]),
-      write('Take one down, pass it around\n'),
-      succ(XN,X),
-      writef('%t bottles of beer on the wall \n\n',[XN]),
-      bottles(XN).
-
-  :- bottles(99).
-
-
-.. page::
-
-or, handling plurals:
-
-.. code:: prolog
-
-  line1(X):- line2(X),write(' on the wall'). 
-  line2(0):- write('no more bottles of beer').
-  line2(1):- write('1 bottle of beer').
-  line2(X):- writef('%t bottles of beer',[X]).
-  line3(1):- write('Take it down, pass it around').
-  line3(X):- write('Take one down, pass it around').
-  line4(X):- line1(X).
-
-  bottles(0):-!.
-  bottles(X):-	
-      succ(XN,X),
-      line1(X),nl,
-      line2(X),nl,
-      line3(X),nl,
-      line4(XN),nl,nl,
-      !,
-      bottles(XN).
-
-  :- bottles(99).
-
-
-Forth
-=====
-
-A stack based language.
-
-(maybe mention PostScript and thus also PDF)
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#Forth
-
-.. code:: forth
-
-  \ Forth version of the 99 Bottles program.
-  \ Dan Reish, dreish@izzy.net
-
-  : .bottles ( n -- n-1 )
-    dup 1 = IF  ." One bottle of beer on the wall," CR
-                ." One bottle of beer," CR
-                ." Take it down," 
-    ELSE  dup . ." bottles of beer on the wall," CR
-          dup . ." bottles of beer," CR
-          ." Take one down," 
-    THEN
-    CR
-    ." Pass it around," CR
-    1-
-    ?dup IF  dup 1 = IF  ." One bottle of beer on the wall;" 
-              ELSE  dup . ." bottles of beer on the wall;" 
-              THEN
-          ELSE  ." No more bottles of beer on the wall." 
-    THEN
-    CR
-  ;
-
-  : nbottles ( n -- )
-    BEGIN  .bottles  ?dup NOT UNTIL
-  ;
-
-  99 nbottles
-
-.. page::
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
-
-.. code:: forth
-
-  :noname   dup . ." bottles" ;
-  :noname       ." 1 bottle"  ;
-  :noname ." no more bottles" ;
-  create bottles , , ,
-
-  : .bottles  dup 2 min cells bottles + @ execute ;
-  : .beer     .bottles ."  of beer" ;
-  : .wall     .beer ."  on the wall" ;
-  : .take     ." Take one down, pass it around" ;
-  : .verse    .wall cr .beer cr
-          1- .take cr .wall cr ;
-  : verses    begin cr .verse ?dup 0= until ;
-
-  99 verses
-
-.. page::
-
-or create a beer language and write the program:
-
-.. code:: forth
-
-  DECIMAL
-  : BOTTLES ( n -- )
-          DUP
-          CASE
-          1 OF    ." One more bottle " DROP ENDOF
-          0 OF    ." NO MORE bottles " DROP ENDOF
-                  . ." bottles "    \ DEFAULT CASE
-          ENDCASE ;
-
-  : ,   [CHAR] , EMIT  SPACE 100 MS CR ;
-  : .   [CHAR] . EMIT  300 MS  CR CR CR ;
-
-  : OF       ." of "   ;     : BEER     ." beer " ;
-  : ON       ." on "   ;     : THE      ." the "  ;
-  : WALL     ." wall" ;      : TAKE     ." take " ;
-  : ONE      ." one "  ;     : DOWN     ." down, " ;
-  : PASS     ." pass " ;     : IT       ." it "   ;
-  : AROUND   ." around" ;
-
-  : POPONE    1 SWAP CR ;
-  : DRINK     POSTPONE DO ; IMMEDIATE
-  : ANOTHER   S" -1 +LOOP" EVALUATE ; IMMEDIATE
-  : HOWMANY   S" I " EVALUATE ; IMMEDIATE
-  : ONELESS   S" I 1- " EVALUATE ; IMMEDIATE
-  : HANGOVER    ." :-("  CR QUIT ;
-
-  : BEERS ( n -- )   \ Usage:  99 BEERS
-        POPONE
-        DRINK
-          HOWMANY BOTTLES OF BEER ON THE WALL ,
-          HOWMANY BOTTLES OF BEER ,
-          TAKE ONE DOWN PASS IT AROUND ,
-          ONELESS BOTTLES OF BEER ON THE WALL .
-        ANOTHER 
-        HANGOVER ;
-
-
-Tcl
-===
-
--- *Probably leave out* --
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/t.html#TCL
-
-.. code:: tcl
-
-  # Tcl version of 99 bottles of beer on the wall
-  # Author: Don Libes (libes@nist.gov)
-  #
-
-  proc bottles {i} {
-          return "$i bottle[expr $i!=1?"s":""] of beer"
-  }
-
-  proc line123 {i} {
-          puts "[bottles $i] on the wall,"
-          puts "[bottles $i],"
-          puts "take one down, pass it around,"
-  }
-
-  proc line4 {i} {
-          puts "[bottles $i] on the wall.\n"
-  }
-
-  for {set i 99} {$i>0} {} {
-          line123 $i
-          incr i -1
-          line4 $i
-  }
-
-.. page::
-
-https://rosettacode.org/wiki/99_Bottles_of_Beer/Tcl
-
-not sure it's worth including any here, but there are several examples,
-showcasing the ways one might do it in tcl
 
 ABC
 ===
@@ -1903,13 +1482,9 @@ Other links
 * http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/ has Fortran IV
   and seems to work
 
-.. page::
-
 * https://www.hillelwayne.com/equals-as-assignment/ Why Does "=" Mean
   Assignment? also by Hillel Wayne, from 2018
 
-.. page::
-  
 * FORTRAN IV
 
   - http://www.math-cs.gordon.edu/courses/cs323/FORTRAN/fortran.html
@@ -1921,14 +1496,10 @@ Other links
 
   - https://hackaday.com/2015/10/26/this-is-not-your-fathers-fortran/1G
 
-.. page::
-  
 Don't forget the excellent http://www.softwarepreservation.org/ and
 particularly the http://www.softwarepreservation.org/projects page, which has
 links to many pages of programming language history, with a huge number of
 useful links.
-
-.. page::
 
 * https://www.whoishostingthis.com/resources/apl/
 
