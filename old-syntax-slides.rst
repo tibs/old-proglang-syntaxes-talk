@@ -48,47 +48,6 @@ course.
    Python
 
 
-Timeline?
----------
-
-...Specify a date (or approximate date) for each language.
-
-Maybe provide a table of the languages and their dates in the notes..
-
-==============  =========
-FORTRAN         1954
-FLOW-MATIC      1955-1959
-LISP and Algol  1958
-COBOL           1959
-==============  =========
-
-
-Plankalkül
-----------
-
-?do I want to mention this?
-
-Designed by Konrad Zuse between 1942 and 1945. It was the first high-level
-programming language to be designed for a computer. First implemented in 1975
-
-https://en.wikipedia.org/wiki/Plankalk%C3%BCl
-
-
-FORTRAN IV - an example
------------------------
-
-This is not valid FORTRAN...
-
-.. code:: fortran
-
-          PRINT 2000
-          GOTO 1100
-    1000  END
-    1100  PRINT 2100
-          GOTO 1000
-    2000  6HHello
-    2100  6HWorld!
-
 
 FORTRAN IV - bottles
 --------------------
@@ -611,14 +570,6 @@ the free format layout.
 Snobol
 ------
 
-Double check
-
-``<expression>, <jump if T>, <jump if F>``
-
-Snobol versus Spitbol
-
-.. page::
-
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Snobol
 
 .. code:: snobol
@@ -991,6 +942,8 @@ with ALGOL 68G version Any (tested with release mk15-0.8b.fc9.i386)
 RPG
 ---
 
+-- *Probably leave out* --
+
 Compare to Snobol ???
 
 Can I actually make a sensible example for this?
@@ -1083,6 +1036,8 @@ https://pharo.org/ - squeak variant
 Occam
 -----
 
+-- *Probably leave out* --
+
 Signficant indentation!
 
 http://concurrency.cc/docs/ - documentation for occam-pi, a superset of occam2
@@ -1154,8 +1109,8 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/o.html#Occam
   :
 
 
-Erlang and Prolog
------------------
+Prolog
+------
 
 Full stop to end expressions/statements, not semicolon
 
@@ -1427,6 +1382,8 @@ or create a beer language and write the program:
 Maybe TCL?
 ----------
 
+-- *Probably leave out* --
+
 Not sure
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/t.html#TCL
@@ -1552,78 +1509,15 @@ We do not talk about INTERCAL
 Not *really* a language people use
 
 
-Interesting links
------------------
+Source of examples
+------------------
 
-Probably more for the notes than for the slides. Not necessarily entirely
-pertinent to this exact topic...
-
-* https://www.hillelwayne.com/post/influential-dead-languages/
-  10 Most(ly dead) Influential Programming Languages, 2020-03-25, Hillel Wayne
-
-* https://www.vidarholen.net/~vidar/An_Empirical_Investigation_into_Programming_Language_Syntax.pdf
-  An Empirical Investigation into Programming Language Syntax, Andreas Stefik
-  and Susanna Siebert, 2013
-
-      Stefik, A. and Siebert, S. 2013. An empirical investigation into
-      programming language syntax. *ACM Trans.Comput.Educ.* 13, 4, Article 19
-      (November 2013), 40 pages.
-
-  I haven't read this yet
-
-.. page::
-
-* https://en.wikipedia.org/wiki/History_of_programming_languages
-
-* https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
-  (perhaps too much information)
-
-* http://www.99-bottles-of-beer.net doesn't seem to be working at the moment
-
-* https://web.mit.edu/kenta/www/two/beer.html has Fortran IV, but the pages
-  for each language are on ``.net`` and don't seem to work at the moment
-
-* http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/ has Fortran IV
-  and seems to work
-
-.. page::
-
-* https://www.hillelwayne.com/equals-as-assignment/ Why Does "=" Mean
-  Assignment? also by Hillel Wayne, from 2018
-
-.. page::
-  
-* FORTRAN IV
-
-  - http://www.math-cs.gordon.edu/courses/cs323/FORTRAN/fortran.html
-  - http://www.jaymoseley.com/hercules/fortran/fort_mini.htm
-  - http://www.quadibloc.com/comp/fort03.htm some context with respect to
-    FORTRAN II, and some talk on specifics of particular implenentations
-
-  Still to look at:
-
-  - https://hackaday.com/2015/10/26/this-is-not-your-fathers-fortran/1G
-
-.. page::
-  
-Don't forget the excellent http://www.softwarepreservation.org/ and
-particularly the http://www.softwarepreservation.org/projects page, which has
-links to many pages of programming language history, with a huge number of
-useful links.
-
-.. page::
-
-* https://www.whoishostingthis.com/resources/apl/
-
-88 Bottles examples
--------------------
-
-Taken from one of:
+The "99 bottles of beer" examples were from one of:
 
 * https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
 * http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/
 
-Sum of squares from:
+Sum of squares (LISP) was from:
 
 * https://rosettacode.org/wiki/Sum_of_squares
 
