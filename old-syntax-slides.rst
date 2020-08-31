@@ -70,30 +70,6 @@ FORTRAN IV
   40    FORMAT(1X)
         END
 
-FORTRAN IV - showing leading spaces
------------------------------------
-
-.. code:: fortran
-
-  ••••••INTEGER BOTTLS
-  ••••••DO 50 I = 1, 99
-  ••••••••BOTTLS = 100 - I
-  ••••••••PRINT 10, BOTTLS
-  ••••••••PRINT 20, BOTTLS
-  ••••••••PRINT 30
-  ••••••••BOTTLS = BOTTLS - 1
-  ••••••••PRINT 10, BOTTLS
-  ••••••••PRINT 40
-  50••••CONTINUE
-  ••••••STOP
-  10••••FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
-  20••••FORMAT(1X, I2, 19H bottle(s) of beer.)
-  30••••FORMAT(34H Take one down and pass it around,)
-  40••••FORMAT(1X)
-  ••••••END
-
-.. page::
-
 A (FORTRAN) punched card
 ------------------------
    
@@ -198,13 +174,6 @@ LISP
 LISP is the second oldest programming language still in common use.
 
 It didn't end up quite how it was initially designed.
-
-.. page::
-
-.. image:: images/lisp1.5programmersmanual.gif
-   :scale: 150%
-
-.. page::
 
 M- and S-expressions
 --------------------
@@ -359,101 +328,21 @@ COBOL 2002
       display space
     end-perform.
 
-COBOL old school (5 slides)
----------------------------
+COBOL old school (5 slides abbreviated)
+---------------------------------------
+
+I orginally had 5 slides of COBOL doing 99 bottles here. It started:
 
 .. code:: cobol
 	
   IDENTIFICATION DIVISION.
   PROGRAM-ID.BOTTLES_OF_BEER.
   AUTHOR.DONALD FRASER.
-  *
-  ENVIRONMENT DIVISION.
-  CONFIGURATION SECTION.
-  SOURCE-COMPUTER. VAX.
-  OBJECT-COMPUTER. VAX.
-  *
-  INPUT-OUTPUT SECTION.
-  FILE-CONTROL.
-          SELECT OUTPUT-FILE
-                  ASSIGN TO BEERS_ON_THE_WALL.
-  *
 
-.. page::
-
-.. code:: cobol
-          
-  DATA DIVISION.
-  FILE SECTION.
-  FD OUTPUT-FILE
-          LABEL RECORDS ARE OMITTED.
-  01 BEERS-OUT                                   PIC X(133).
-  *
-  WORKING-STORAGE SECTION.
-  01 FLAGS-COUNTERS-ACCUMULATORS.
-          05 FLAGS.
-                  10 E-O-F                                PIC 9.
-                          88 END-OF-FILE                VALUE 1.
-          05 COUNTERS.
-                  10 BOTTLES                      PIC 999
-                                                  VALUE 0.
-
-.. page::
-   
-.. code:: cobol
-
-  01 RECORD-OUT.
-          05 LINE1.
-                  10 NUMBER-OF-BEERS-1                    PIC ZZ9.
-                  10                                      PIC X(28)
-                                  VALUE "BOTTLES OF BEER IN THE WALL ".
-                  10                                                        PIC
-  X
-                                  VALUE ",".
-                          10 NUMBER-OF-BEERS-2            PIC ZZ9.
-                  10                                                        PIC
-  X.
-                  10                                      PIC X(17)
-                                  VALUE "BOTTLES OF BEER.".
-          05 LINE2.
-                  10                                              PIC X(34)
-                                  VALUE "TAKE ONE DOWN AND PASS IT ARROUND ".
-                  10 NUMBER-OF-BEERS-3            PIC ZZ9.
-                  10                                      PIC X.
-                  10                                      PIC X(28)
-                                  VALUE "BOTTLES OF BEER IN THE WALL".
-  *
-
+and ended:
 
 .. code:: cobol
 
-  PROCEDURE DIVISION.
-  DRIVER-MODULE.
-        PERFORM INITIALIZATION.
-        PERFORM PROCESS UNTIL END-OF-FILE.
-        PERFORM TERMINATION.
-        STOP RUN.
-  *
-  INITIALIZATION.
-          OPEN OUTPUT OUTPUT-FILE.
-          ADD 100 TO BOTTLES.
-  *
-
-.. page::
-
-and finally:
-
-.. code:: cobol
-
-  PROCESS.
-          IF BOTTLES = 0 THEN
-                  COMPUTE E-O-F = 1
-          ELSE PERFORM WRITE-ROUTINE
-          END-IF.
-  *
-  TERMINATION.
-          CLOSE OUTPUT-FILE.
-  *
   WRITE-ROUTINE.
           MOVE BOTTLES TO NUMBER-OF-BEERS-1, NUMBER-OF-BEERS-2.
           COMPUTE BOTTLES = BOTTLES - 1.
@@ -488,7 +377,8 @@ From https://www.whoishostingthis.com/resources/forth-programming/
   We will now calculate: (2 + 3) * 5
   This equals: 25
 
-.. page::
+99 bottles in Forth
+-------------------
 
 .. code:: forth
 
@@ -509,7 +399,7 @@ From https://www.whoishostingthis.com/resources/forth-programming/
 
 .. page::
 
-or create a beer language and write the program:
+or create a beer language (slide 1)
 
 .. code:: forth
 
@@ -532,6 +422,8 @@ or create a beer language and write the program:
   : AROUND   ." around" ;
 
 .. page::
+
+(slide 2)
 
 .. code:: forth
 
@@ -735,14 +627,15 @@ Snobol 99 bottles
 BCPL
 ----
 
-A small language designed to be easy to bootstrap.
+A small language designed to be easy to bootstrap, and for use in writing
+compilers.
 
 The ancestor of C.
 
-.. page::
+Some things about BCPL
+----------------------
 
-Things about BCPL
------------------
+Only one type: the word.
 
 ``$( .. )$`` to mark blocks
 
