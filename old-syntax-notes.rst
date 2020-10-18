@@ -56,20 +56,13 @@ investigations.
    Python
 
 
-Plankalkül
-----------
-
--- *not getting included, I think* --
-
-Designed by Konrad Zuse between 1942 and 1945. It was the first high-level
-programming language to be designed for a computer. First implemented in 1975
-
-https://en.wikipedia.org/wiki/Plankalk%C3%BCl
-
 FORTRAN IV
 ==========
 
 https://en.wikipedia.org/wiki/Fortran
+
+FORTRAN is the oldest of the first high level programming languages that are
+still in use (the others being LISP and COBOL, both of which come later).
 
 The first FORTRAN compiler was in 1957, and FORTRAN IV was released in 1962.
 
@@ -1239,9 +1232,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/r.html#R
 
 ------
 
-
-S and R
--------
 
 * https://en.wikipedia.org/wiki/S_%28programming_language%29
 * https://en.wikipedia.org/wiki/R_(programming_language)
