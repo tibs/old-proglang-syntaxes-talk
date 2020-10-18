@@ -12,7 +12,8 @@ https://github.com/tibs/old-proglang-syntaxes-talk
 
   * FORTRAN IV rewritten
   * LISP rewritten
-  * COBOL in progress
+  * COBOL rewritten
+  * Forth started / in progress
 
 .. contents::
 
@@ -538,10 +539,10 @@ techniques - these could really only become practicable after our period of
 interest, as graphical hardware became easily available.
 
 COBOL was also the first popular language that was designed to be machine
-(hardware and operating system) agnostic, which also goes well with its wish
-to be suitable for people who were not computer experts.
+(hardware and operating system) agnostic, which goes well with its aim
+to be suitable for non-computer experts.
 
-COBOL introduced sophisticated mechanisms for organising and introspecting
+It also introduced sophisticated mechanisms for organising and introspecting
 data, and for the input and output of that data.
 
 https://en.wikipedia.org/wiki/Visual_programming_language
@@ -553,7 +554,7 @@ https://en.wikipedia.org/wiki/Visual_programming_language
 .. _LabVIEW: https://en.wikipedia.org/wiki/LabVIEW
 .. _`paper from 2019`: http://inform7.com/talks/2019/06/14/narrascope.html
 
-COBOL programs had a reputation for verbosity. For instance, the 99 Beers
+COBOL programs have a reputation for verbosity. For instance, the 99 Beers
 example from
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
 is quite long (and also shows how the language uses significant column layout):
@@ -663,9 +664,123 @@ COBOL 2002) "adheres to the minimum guidelines":
 Forth
 =====
 
-A stack based language.
+https://en.wikipedia.org/wiki/Forth_(programming_language)
 
-(maybe mention PostScript and thus also PDF)
+Forth is a stack based language, dating from 1970.
+
+It has very little syntax. It allows defining dictionaries of "words" which
+map to functions or data structures. The functions then operate on the stack.
+
+There are still multiple implementations of Forth in use, and it can be very
+useful in environments with few resources (for instance, not much memory).
+
+I have never programmed Forth myself, but I have (a long time ago) written
+PostScript, which has some similarities.
+
+-------
+
+From the slides:
+
+A very simple Forth example
+from https://www.whoishostingthis.com/resources/forth-programming/
+
+.. code:: forth
+
+  : OUTMATH             Output a mathematical calculation
+    ." We will now calculate: (2 + 3) * 5" CR
+    2 3 + 5 *
+    ." This equals: " . CR ;
+
+  OUTMATH
+
+.. code::
+
+  We will now calculate: (2 + 3) * 5
+  This equals: 25
+
+In that example:
+
+* ``: OUTMATH`` starts the definition of the word ``OUTMATH``
+* ``.`` <string> ``CR``
+  
+  * ``CR`` outputs a new line ("carriage return")
+
+* ``2 3 + 5 *``
+
+  1. puts 2 on the stack
+  2. puts 3 on the stack
+  3. takes the top two elements off the stack (2 and 3), adds them and puts
+     the result (5) back on the stack
+  4. puts 5 on the stack
+  5. takes the top two elements off the stack (5 and 5), multiplies them and
+     puts the result back on the stack
+
+* ``.`` <string> ``.`` CR ``;``
+
+  * ...
+
+* ``OUTMATH`` executes the newly define word
+
+99 bottles in Forth from https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
+
+.. code:: forth
+
+  :noname   dup . ." bottles" ;
+  :noname       ." 1 bottle"  ;
+  :noname ." no more bottles" ;
+  create bottles , , ,
+
+  : .bottles  dup 2 min cells bottles + @ execute ;
+  : .beer     .bottles ."  of beer" ;
+  : .wall     .beer ."  on the wall" ;
+  : .take     ." Take one down, pass it around" ;
+  : .verse    .wall cr .beer cr
+          1- .take cr .wall cr ;
+  : verses    begin cr .verse ?dup 0= until ;
+
+  99 verses
+
+or create a beer language amd use it, also from
+https://rosettacode.org/wiki/99_Bottles_of_Beer#Forth
+
+.. code:: forth
+
+  DECIMAL
+  : BOTTLES ( n -- )
+          DUP
+          CASE
+          1 OF    ." One more bottle " DROP ENDOF
+          0 OF    ." NO MORE bottles " DROP ENDOF
+                  . ." bottles "    \ DEFAULT CASE
+          ENDCASE ;
+
+  : ,   [CHAR] , EMIT  SPACE 100 MS CR ;
+  : .   [CHAR] . EMIT  300 MS  CR CR CR ;
+  : OF       ." of "   ;     : BEER     ." beer " ;
+  : ON       ." on "   ;     : THE      ." the "  ;
+  : WALL     ." wall" ;      : TAKE     ." take " ;
+  : ONE      ." one "  ;     : DOWN     ." down, " ;
+  : PASS     ." pass " ;     : IT       ." it "   ;
+  : AROUND   ." around" ;
+  : POPONE    1 SWAP CR ;
+  : DRINK     POSTPONE DO ; IMMEDIATE
+  : ANOTHER   S" -1 +LOOP" EVALUATE ; IMMEDIATE
+  : HOWMANY   S" I " EVALUATE ; IMMEDIATE
+  : ONELESS   S" I 1- " EVALUATE ; IMMEDIATE
+  : HANGOVER    ." :-("  CR QUIT ;
+
+  : BEERS ( n -- )   \ Usage:  99 BEERS
+        POPONE
+        DRINK
+          HOWMANY BOTTLES OF BEER ON THE WALL ,
+          HOWMANY BOTTLES OF BEER ,
+          TAKE ONE DOWN PASS IT AROUND ,
+          ONELESS BOTTLES OF BEER ON THE WALL .
+        ANOTHER 
+        HANGOVER ;
+
+
+-------
 
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#Forth
 
