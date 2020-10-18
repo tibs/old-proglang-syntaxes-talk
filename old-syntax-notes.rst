@@ -61,86 +61,23 @@ FORTRAN IV
 
 https://en.wikipedia.org/wiki/Fortran
 
-FORTRAN is the oldest of the first high level programming languages that are
-still in use (the others being LISP and COBOL, both of which come later).
+FORTRAN is arguably the first high level programming language, and it is
+definitely the oldest high level language still in use today, although of
+course it as changed a lot over the years.
 
 The first FORTRAN compiler was in 1957, and FORTRAN IV was released in 1962.
 
-* FORTRAN arguable the first high level programming language
-* However, I'm choosing FORTRAN IV (also sometimes know as FORTRAN 66 from its
-  standardisation)
-* Modern Fortran is no longer very much like this - it's continued to evolve
-* ...why
-* Punched cards, and the use of columns
+I've chosen to look at FORTRAN IV because it's the first programming language
+I had to learn at university, and because it's what we were still using in the
+early 1980s at my first job. (Incidentally, the FORTRAN 66 standard
+essentially describes the same language, but no-one calls it that.)
 
-  * comments
-  * labels
-  * continuation - marking that a line/card *continues*
-  * sequence number
+Note that modern Fortran is no longer very much like this - it's continued to
+evolve (this is also true for LISP and COBOL, the other two early languages
+that are still in wide use, which we shall come to later).
 
-* Spaces in the code are *ignored* (so ``GOTO`` or ``GO TO`` and so on)
-* No keywords
-* ``IF (<expression>) GOTO <label> ... <label>``
-* ``DO <label> <do-expression> ... <label> CONTINUE``
-* ``IF (expression) <lt-label>, <eq-label>, <gt-label>``
-* FUNCTIONS versus SUBROUTINES
-* I remember 6 character names
-
-
-.. image:: images/FortranCardPROJ039.agr.jpg
-   :alt: Fortran punched card. Program text "Z(1) = Y + W(1)". Sequence number "PR0J039"
-
-image source: https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era
-
--------
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#FORTRAN-IV
-
-.. code:: fortran
-
-  C Allen Mcintosh
-  C mcintosh@bellcore.com 
-        integer bottls
-        do 50 i = 1, 99
-          bottls = 100 - i
-          print 10, bottls
-  10       format(1x, i2, 31h bottle(s) of beer on the wall.)
-          print 20, bottls
-  20       format(1x, i2, 19h bottle(s) of beer.)
-          print 30
-  30       format(34h Take one down and pass it around,)
-          bottls = bottls - 1
-          print 10, bottls
-          print 40
-  40       format(1x)
-  50    continue
-        stop
-        end
-
-which I amend to give the (to me) more familiar:
-
-.. code:: fortran
-
-  ••••••INTEGER BOTTLS
-  ••••••DO 50 I = 1, 99
-  ••••••••BOTTLS = 100 - I
-  ••••••••PRINT 10, BOTTLS
-  ••••••••PRINT 20, BOTTLS
-  ••••••••PRINT 30
-  ••••••••BOTTLS = BOTTLS - 1
-  ••••••••PRINT 10, BOTTLS
-  ••••••••PRINT 40
-  50••••CONTINUE
-  ••••••STOP
-  10••••FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
-  20••••FORMAT(1X, I2, 19H bottle(s) of beer.)
-  30••••FORMAT(34H Take one down and pass it around,)
-  40••••FORMAT(1X)
-  ••••••END
-
-(amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
-
-or with actual spaces (which is easier to read)
+Here is an example of fairly traditional FORTRAN IV, implementing the "99
+Bottles" song:
 
 .. code:: fortran
 
@@ -161,104 +98,203 @@ or with actual spaces (which is easier to read)
   40    FORMAT(1X)
         END
 
-(amended from an example by Allen Mcintosh, mcintosh@bellcore.com)
+(based on the example at
+http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/f.html#FORTRAN-IV
+by Allen Mcintosh, mcintosh@bellcore.com,
+but changed to upper case and re-ordered to follow a different coding style.)
 
-FORTRAN DATA CARDS
-------------------
+Punched cards
+-------------
 
-* Comment Cards
+The syntax (and particularly the layout) of FORTRAN [1]_ was heavily
+influenced by its input medium, punched cards:
 
-  The first character on the card much be C; all other characters are ignored
-  in subsequent processing.
+.. [1] I'll keep using upper-case to name the language, since historically
+       that is how it was named, but note that modern Fortran is named using
+       mixed-case.
+
+.. figure:: images/FortranCardPROJ039.agr.jpg
+   :alt: Fortran punched card. Program text "Z(1) = Y + W(1)". Sequence number "PR0J039"
+   :width: 80%
+
+   image source: https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era
+
+The above is a punched card representing the FORTRAN line of code:
+
+.. code:: fortran
+
+   Z(1) = Y + W(1)
+
+Each column with holes in it represents the EBCDIC [2]_ code for a character.
+
+.. [2] EBCDIC_ is/was an IBM encoding, with interesting differences from
+       ASCII.
+.. _EBCDIC: https://en.wikipedia.org/wiki/EBCDIC
+
+There are three sorts of card used by FORTRAN: Data cards, comment cards and
+statement cards.
+
+*Data cards* are used for the input and output of data. All 80 columns are
+used to indicate characters.
+
+*Comment cards* have a "C" in the first column. The rest of the characters on
+ the card are ignored by the compiler.
    
-* Statement Cards
+*Statement cards* represent a single (physical) line of FORTRAN code.
   
-  Statement cards are subdivided into four sections as follows:
+Statement cards have four sections:
 
 ::
 
                   1         2        7            8
     12345 | 6 | 7890123456789 .. .. 9012 | 34567890
 
-* The first five characters are used for unique statement numbers. Numbers do
-  not need to appear in sequence.  Any statement (except the END statement)
-  may have a statement number.
+* The first five characters may be unique statement numbers. These are used to
+  refer to the statement from elsewhere in the program. They don't have to
+  occur in a particular order.
 
-* The sixth character is called the "continuation" character.  If more space
-  is required from the previous card, include any character (except space
-  or 0) in the 6th position of the next card.
+* The sixth character may be a "continuation" character. If it is present and
+  not "0", then this card is a continuation of the previous card.
 
-  One convention was to put a 0 in the continuation field of the first card
-  (the one start was to be continued).
+  (So for a continued line, one might put a "0" in that column for the first
+  card, a "1" for the second card, and so on.)
 
-* Positions 7-72 are used for the actual program code.  Often programmers use
-  a TAB (8 spaces) rather than type 7 spaces.
+* Positions 7-72 are used for the actual program code.
 
-* Positions 73-80 are infrequently used, but when they are they are used for
-  identification codes which are only of interest to the programmer, they are
-  not computed.
+  In our example card, this is ``Z(1) = Y + W(1)``
 
+* Positions 73-80 are ignored by the compiler, but would typically be used as
+  a sequence number. This is useful for indicating the order of the cards (we
+  actually had this as an exercise at University - we were given a small deck
+  of FORTRAN punched cards, without sequence numbers, and told that "they had
+  been dropped" and we had to put them back into order.)
 
-(actually, putting a sequence number in that last column is pretty important
-in case you drop the deck of cards!)
+  In our example card, this is ``7961039``. Presumably this is not *just* a
+  card count, as that would be a very long program.
 
-Note that labels *look* like numbers, but they aren't really. So their order
-doesn't make any difference to the compiler. Also, ``••123``  is just as
-allowed as ``123••``.
+On a punched card, columns 1 - 6 could be left unpunched if unused, but when
+typing FORTRAN code into a text editor, actual spaces would be used (use of
+tabs is beyond the scope of this article).
 
-FORTRAN IV
-----------
+Here is that earlier example with `•` characters replacing leading spaces::
 
-Spaces within program code are ignored. So ``GOTO`` is the same as ``GO TO``
-is the same as ``G O T O``.
+  ••••••INTEGER BOTTLS
+  ••••••DO 50 I = 1, 99
+  ••••••••BOTTLS = 100 - I
+  ••••••••PRINT 10, BOTTLS
+  ••••••••PRINT 20, BOTTLS
+  ••••••••PRINT 30
+  ••••••••BOTTLS = BOTTLS - 1
+  ••••••••PRINT 10, BOTTLS
+  ••••••••PRINT 40
+  50••••CONTINUE
+  ••••••STOP
+  10••••FORMAT(1X, I2, 31H bottle(s) of beer on the wall.)
+  20••••FORMAT(1X, I2, 19H bottle(s) of beer.)
+  30••••FORMAT(34H Take one down and pass it around,)
+  40••••FORMAT(1X)
+  ••••••END
 
-No reserved words, context gives meaning.
+Some notes on FORTRAN IV syntax
+-------------------------------
 
-So:
+Spaces are not significant
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+More precisely, spaces in the program code are ignored. So ``GOTO 99`` is the
+same as ``GO TO 99`` and also the same as ``G O T O 9 9``.
+
+There are no reserved words
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So statements like:
+
+  .. code:: fortran
+
+    IF (IF.EQ.THEN) IF=IF*THEN
+
+  are perfectly sensible (although perhap ill-advised).
+
+Six character names
+~~~~~~~~~~~~~~~~~~~
+
+Names were restricted to 6 characters (hence ``BOTTLS = 99``). This made
+writing libraries interesting. We would typically name library functions using
+3 letters as a mnemonic for the library, and then 3 characters to identify
+what the function was.
+
+No If/then/else
+~~~~~~~~~~~~~~~
+
+If/then/else hadn't been invented yet. The basic IF was of the form:
 
 .. code:: fortran
 
-            IF(IF.EQ.PROGRAM)IF=IF*PROGRAM
+        IF (something) expression
 
-is legal FORTRAN (of some type)
+For instance:
 
-Also, case is not relevant - although I had a habit of typing all the code in
-CAPITALS (after all, that's what your left little finger is for).
+.. code:: fortran
 
-I remember that the Fortran compiler we used was limited to 6 character
-variable, function and subroutine names, which made writing libraries
-interesting...
-            
+        IF (VAL.GT.9) VAL = 0
 
-FORTRAN IV - Computed GOTO
---------------------------
+        IF (VAL.EQ.3) GOTO 1000
+  
+The arithmetic IF
+~~~~~~~~~~~~~~~~~
 
-
-Arithmetic IF:
+There was also the arithmetic IF:
     
-        IF (numeric-expression) statement1,statement2,statement3
-   
-Evaluate the expression, then transfer to statement1 if the result is
-negative, to statement2 if zero, to statement3 if positive.  For example,
-
 .. code:: fortran
-          
+
         IF (X/Y*Z) 100,300,50
         
-If the result of the computation is negative, transfer to statement number
-100, if zero transfer to statement number 300, if positive to statement
-number 50.
+If the result of ``X/Y*Z`` is negative, GOTO statement number 100, if zero
+GOTO statement number 300, and if positive GOTO statement number 50.
 
+Implicit typing of variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-FORTRAN - Functions versus subroutines
---------------------------------------
+You could declare the type of a variable explicitly:
 
-Are those the right terms?
+.. code:: fortran
 
-function returns a single value (assigned to the function name)
+  INTEGER DAY,WEEK,MONTH
 
-subroutine returns 0 or more values, by modifying the variables in its
-parameter list
+but if you did not, then the type would be decided based on the first
+character of the name:
+
+.. code:: fortran
+
+  C A variable starting I - N defaults to INTEGER, otherwise REAL
+        I = 4
+        R = 3.0
+
+FUNCTIONS versus SUBROUTINES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A function returns a single value, assigned to the function name. For
+instance:
+
+.. code:: fortran
+
+  INTEGER FUNCTION ADD1(I)
+    ADD1 = I + 1
+  END
+
+  J = ADD1(3)
+
+A subroutine returns 0 or more values, via its argument list. For instance:
+
+.. code:: fortran
+
+  SUBROUTINE CALC(A,B,C,SUM,SUMSQ)
+    SUM = A + B + C
+    SUMSQ = SUM ** 2
+  END
+
+  CALL CALC(1,2,3,SUM1,SUMSQ1)
+
 
 LISP
 ====
@@ -1493,7 +1529,7 @@ useful links.
 
 * https://www.whoishostingthis.com/resources/apl/
 
-88 Bottles examples
+99 Bottles examples
 -------------------
 
 Taken from one of:
