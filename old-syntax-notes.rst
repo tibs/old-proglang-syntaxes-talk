@@ -7,6 +7,11 @@ Notes to accompany a talk given to CamPUG_
 The slides, and this document itself, can be found at
 https://github.com/tibs/old-proglang-syntaxes-talk
 
+  **Note** that this is being rewritten to make sense as an article, not just my
+  own random notes. Progress so far:
+
+  * FORTRAN IV rewritten
+
 .. contents::
 
 
