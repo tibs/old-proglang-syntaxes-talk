@@ -522,13 +522,13 @@ COBOL is the third oldest programming language still in common use. It was
 designed in 1959 and first standardised in 1968.
 
 Both FORTRAN (FORmula TRANslation) and LISP (LISt Processing) were seen as
-languages for mathematicians and engineers, and there was a need for a
-programming language for use in business. While this may seem strange now, it
-made a lot of sense at the time - remember this was all new stuff.
+languages for mathematicians and engineers. A need was seen for a programming
+language that could be used by non-technical people for business
+applications. In order to achieve this, COBOL (Common Business Oriented
+Language) tried to use English words and phrases rather than mathematical
+notations.
 
-This is why COBOL tried so hard to be more like English.
-
-It is possible to regar COBOL as the beginning of a long tradition of trying
+It is possible to regard COBOL as the beginning of a long tradition of trying
 to make programming more accessible to non-academics/non-programmers. Some
 programming languages continue the tradition of trying to be "English like",
 for instance `Inform 7`_ in the text adventure space (this `paper from 2019`_
@@ -537,10 +537,12 @@ Others, like Blockly_, Scratch_ and LabVIEW_, try using graphical
 techniques - these could really only become practicable after our period of
 interest, as graphical hardware became easily available.
 
-COBOL is also important because of its innovations on how to specify the
-output of text.
+COBOL was also the first popular language that was designed to be machine
+(hardware and operating system) agnostic, which also goes well with its wish
+to be suitable for people who were not computer experts.
 
-    ((See if there's anything useful I can say about that))
+COBOL introduced sophisticated mechanisms for organising and introspecting
+data, and for the input and output of that data.
 
 https://en.wikipedia.org/wiki/Visual_programming_language
 
@@ -551,9 +553,10 @@ https://en.wikipedia.org/wiki/Visual_programming_language
 .. _LabVIEW: https://en.wikipedia.org/wiki/LabVIEW
 .. _`paper from 2019`: http://inform7.com/talks/2019/06/14/narrascope.html
 
---------
-
+COBOL programs had a reputation for verbosity. For instance, the 99 Beers
+example from
 http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
+is quite long (and also shows how the language uses significant column layout):
 
 .. code:: cobol
 	
@@ -571,9 +574,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           SELECT OUTPUT-FILE
                   ASSIGN TO BEERS_ON_THE_WALL.
   *
-
-.. code:: cobol
-          
   DATA DIVISION.
   FILE SECTION.
   FD OUTPUT-FILE
@@ -588,8 +588,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           05 COUNTERS.
                   10 BOTTLES                      PIC 999
                                                   VALUE 0.
-.. code:: cobol
-
   01 RECORD-OUT.
           05 LINE1.
                   10 NUMBER-OF-BEERS-1                    PIC ZZ9.
@@ -611,9 +609,6 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
                   10                                      PIC X(28)
                                   VALUE "BOTTLES OF BEER IN THE WALL".
   *
-
-.. code:: cobol
-
   PROCEDURE DIVISION.
   DRIVER-MODULE.
         PERFORM INITIALIZATION.
@@ -642,11 +637,9 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/c.html#Cobol
           MOVE BOTTLES TO NUMBER-OF-BEERS-3.
           WRITE BEERS-OUT FROM LINE2.
 
-https://rosettacode.org/wiki/Category:COBOL
-
-A more concise version that adheres to the minimum guidelines. Leading zeros
-are not suppressed. (OpenCOBOL - 1.1.0) - I believe this is COBOL 2002, hence
-the free format layout.
+More modern versions of COBOL are a lot more concise. This example
+from https://rosettacode.org/wiki/99_Bottles_of_Beer#COBOL (which I think is
+COBOL 2002) "adheres to the minimum guidelines":
 
 .. code:: cobol
 
