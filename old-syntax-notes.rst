@@ -11,6 +11,7 @@ https://github.com/tibs/old-proglang-syntaxes-talk
   own random notes. Progress so far:
 
   * FORTRAN IV rewritten
+  * LISP in progress
 
 .. contents::
 
@@ -31,9 +32,9 @@ the parsing techniques we are now used to did not exist. There wasn't even a
 standard syntax for describing a programming language syntax.
 
 All of the languages, except a couple of exceptions toward the end, are ones I
-knew about in the 1980s. Most of them are chosen because I have some
-familiarity with them, or consider them fascinating for one reason or
-another. I'll explain why I've chosen each langauge when discussing it.
+knew about in the 1980s. I've chosen these particular languages because I have
+some familiarity with them, or because I consider them fascinating for one
+reason or another.
 
 There are compilers or interpreters available for more-or-less all of them
 still available, and in a good many cases, the language (or its direct
@@ -73,14 +74,17 @@ course it has changed a lot over the years.
 
 The first FORTRAN compiler was in 1957, and FORTRAN IV was released in 1962.
 
-I've chosen to look at FORTRAN IV because it's the first programming language
-I had to learn at university, and because we were still using it in the
-early 1980s at my first job. (Incidentally, the FORTRAN 66 standard
-essentially describes the same language, but no-one calls it that.)
+I've chosen to look at FORTRAN IV (rather than any other version of FORTRAN)
+because it's the first programming language I had to learn at university, and
+because we were still using it in the early 1980s at my first
+job. (Incidentally, the FORTRAN 66 standard essentially describes the same
+language, but no-one calls it that.)
 
 Note that modern Fortran is no longer very much like this - it's continued to
 evolve (this is also true for LISP and COBOL, the other two early languages
 that are still in wide use, which we shall come to later).
+
+--------
 
 Here is an example of fairly traditional FORTRAN IV, implementing the "99
 Bottles" song:
@@ -309,66 +313,58 @@ LISP
 
 https://en.wikipedia.org/wiki/Lisp_(programming_language)
 
-LISP is one year younger than FORTRAN, and was originally specified in 1958.
+LISP is one year younger than FORTRAN, which makes it the second oldest
+programming language still in common use.
 
-M-expressions were meant to be the form of the language, and are used in the
-documentaion (for instance in the LISP 1.5 Programmer's Manual).
+LISP was originally specified in 1958.
 
-S-expressions were implemented first (?) and programmers took to them as the
-preferred for.
+Modern lisps abound, including Common Lisp and a whole host of Schemes. The
+only Lisp I have any direct experience of writing myself, though, is Emacs
+Lisp.
 
-For instance, ``car[cons[A,B]]`` is equivalent to ``(car (cons A B))``
+M-expressions and S-expressions
+-------------------------------
 
-Modern lisps abound, including Common Lisp and a whole host of Schemes.
-
-Many people find S-expressions daunting, although Lisp programmers always
-assume that their text editor will just take care of them. I recommend at
-least learning a bit more about Lisp -- give a couple of useful references?
-
-Interestingly, Franz Lisp recognised the problem of sometimes needing to type
-many closing parentheses in sequence, and allowed the use of ``]`` to mean
-"close all outstanding ``)``". I'm not sure how much that feature was used.
-
---------
-
-... present an example of the language as it didn't turn out, first! ...
-
-(? picture of Lisp 1.5 manual ?)
+It didn't end up quite how it was initially designed.
 
 From https://en.wikipedia.org/wiki/Lisp_(programming_language)#History:
 
-"""McCarthy's original notation used bracketed "M-expressions" that would be
-translated into S-expressions. As an example, the M-expression car[cons[A,B]]
-is equivalent to the S-expression (car (cons A B)). Once Lisp was implemented,
-programmers rapidly chose to use S-expressions, and M-expressions were
-abandoned. M-expressions surfaced again with short-lived attempts of MLisp[11]
-by Horace Enea and CGOL by Vaughan Pratt."""
+  McCarthy's original notation used bracketed "`M-expressions`_" that would be
+  translated into `S-expressions`_.
 
-https://en.wikipedia.org/wiki/M-expression
+  ....
 
-"""McCarthy had planned to develop an automatic Lisp compiler (LISP 2) using
-M-expressions as the language syntax and S-expressions to describe the
-compiler's internal processes. Stephen B. Russell read the paper and
-suggested to him that S-expressions were a more convenient syntax. Although
-McCarthy disapproved of the idea, Russell and colleague Daniel J. Edwards
-hand-coded an interpreter program that could execute S-expressions.[2] This
-program was adopted by McCarthy's research group, establishing S-expressions
-as the dominant form of Lisp."""
+  Once Lisp was implemented, programmers rapidly chose to use S-expressions,
+  and M-expressions were abandoned.
 
-The Lisp 1.5 manual does, of course, talk about both forms - for instance the
-M-expression:
+The Lisp 1.5 manual talks about both forms. As an example taken from there,
+the M-expression:
 
 .. code::
 
    [atom[x] → x; T → ff[car[x]]]
 
-becomes:
+corresponds to the S-expression:
 
 .. code:: lisp
 
    (COND ((ATOM X) X)
        ((QUOTE T) (FF (CAR X))))
 
+From https://en.wikipedia.org/wiki/M-expression:
+
+  McCarthy had planned to develop an automatic Lisp compiler (LISP 2) using
+  M-expressions as the language syntax and S-expressions to describe the
+  compiler's internal processes. Stephen B. Russell read the paper and
+  suggested to him that S-expressions were a more convenient syntax. Although
+  McCarthy disapproved of the idea, Russell and colleague Daniel J. Edwards
+  hand-coded an interpreter program that could execute S-expressions. This
+  program was adopted by McCarthy's research group, establishing S-expressions
+  as the dominant form of Lisp.
+
+.. _`M-expression`: https://en.wikipedia.org/wiki/M-expression
+.. _`S-expression`: https://en.wikipedia.org/wiki/S-expression
+  
 From
 http://www.softwarepreservation.org/projects/LISP/lisp2/SP-2450-SUMSQUARE_LCS.pdf
 we have a LISP 2 M-expression:
@@ -393,64 +389,56 @@ giving the result::
 
   69.0
 
-or, of course!
-
-Common Lisp
-
-https://rosettacode.org/wiki/Sum_of_squares#Common_Lisp
+In Common Lisp this might be written:
 
 .. code:: lisp
 
   (defun sum-of-squares (vector)
     (loop for x across vector sum (expt x 2)))
 
-Scheme
+(source from https://rosettacode.org/wiki/Sum_of_squares#Common_Lisp)
 
-https://rosettacode.org/wiki/Sum_of_squares#Scheme
+or in Scheme:
 
 .. code:: scheme
 
   (define (sum-of-squares l)
     (apply + (map * l l)))
 
+(source https://rosettacode.org/wiki/Sum_of_squares#Scheme)
+
+The big advantage of S-expressions is that they act as both a data
+representation and a program representation, which means that it is possible
+to treat a Lisp program itself as data in a very natural manner.
+
+My father's parentheses
+-----------------------
+
+It is definitely true that many people find Lisp daunting.
+
+I think that is in large part because of the parentheses:
+
+.. figure:: images/lisp_cycles.png
+   :scale: 500%
+   :alt: XKCD comic, "These are your father's parentheses"
+
+   https://xkcd.com/297/ (Randall Monroe)
+
+but probably also that Lisp is unusual 
+
+A good text editor should handle indentation and balancing the parentheses for
+you, but it is true that Lisp is visually unlike other programming languages.
+
+Interestingly, Franz Lisp recognised the problem of sometimes needing to type
+many closing parentheses in sequence, and allowed the use of ``]`` to mean
+"close all outstanding ``)``". I'm not sure how much that feature was used.
 
 LISP - as we know it
 --------------------
 
-...
+Some more 99 Bottles examples:
 
-Not sure how useful this is:
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/l.html#LISP
-
-.. code:: lisp
-
-	
-  ;;; Lisp example of "99 Bottles of beer on the wall"
-  ;;;
-  ;;; NOTE:  Although my mailer insists on inserting 
-  ;;; (at least) one, there is no line break in the 
-  ;;; string beginning "~~  (i.e. it should all be on one line).
-  ;;;
-  ;;; In particular, if it breaks so that the first line
-  ;;; ends with "...~~R" and the second line starts "~0@..."
-  ;;; they should be put back together with a space between
-  ;;; them.  That is, it should read "...~~R ~0@...".
-  ;;; Or just see it here:
-  ;;;     http://www.sover.net/~nichael/lisp99.html
-  (labels ((foo (x)
-    (and (<= 0 x) (cons x (foo (1- x))))))
-    (format t (format nil 
-          "~~{~~&~~@(~~%~~R ~A ~A!~~)~~:*~~&~~@(~~R ~0@*~A!~~)~~&~~@(~2@*~A!~~)~~&~~@(~~[~A~~:;~~:*~~R~~:*~~] ~0@*~A!~~)~~}"
-              "bottles of beer"
-              "on the wall"
-              "take one down, pass it around"	
-              "no more"
-              )
-  (foo 99)))
-
-
-http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
+Scheme, from http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
   
 .. code:: scheme
 	  
@@ -476,10 +464,8 @@ http://www.info.univ-angers.fr/pub/gh/hilapr/beers/schade/s.html#Scheme
 
   (beer 99)
 
+Common Lisp, from https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
 
-https://rosettacode.org/wiki/99_Bottles_of_Beer/Lisp
-
-Common Lisp
 
 .. code:: lisp
 
@@ -493,38 +479,18 @@ Common Lisp
 
   (bottles 99)
 
-Scheme
+Racket, from https://rosettacode.org/wiki/99_Bottles_of_Beer#Racket
 
-https://rosettacode.org/wiki/99_Bottles_of_Beer#Scheme
+.. code:: lisp
 
-.. code:: scheme
-
-  (define (sing)
-  (define (sing-to-x n)
-    (if (> n -1)
-      (begin 
-          (display n)
-          (display "bottles of beer on the wall")
-          (newline)
-          (display "Take one down, pass it around")
-          (newline)
-          (sing-to-x (- n 1)))
-      (display "would you wanna me to sing it again?")))
-  (sing-to-x 99))
-
-
-My father's parentheses
------------------------
-
-Franz Lisp (?) and the ``]``
-
-...the inevitable xkcd cartoon
-
-https://xkcd.com/297/ (Randall Monroe)
-
-.. image:: images/lisp_cycles.png
-   :scale: 500%
-   :alt: XKCD comic, "These are your father's parentheses"
+  #lang racket
+  (define (sing bottles)
+    (define (plural n) (~a n " bottle" (if (= n 1) "" "s")))
+    (printf "~a of beer on the wall\n~a of beer\n~
+            Take one down, pass it around\n~a of beer on the wall\n\n"
+            (plural bottles) (plural bottles) (plural (sub1 bottles)))
+    (unless (= 1 bottles) (sing (sub1 bottles))))
+  (sing 99)
 
 
 If-then-else
@@ -532,13 +498,14 @@ If-then-else
 
 According to https://en.wikipedia.org/wiki/Lisp_(programming_language
 
-"""A conditional using an if–then–else syntax was invented by McCarthy in a
-Fortran context. He proposed its inclusion in ALGOL, but it was not made part
-of the Algol 58 specification. For Lisp, McCarthy used the more general
-cond-structure. Algol 60 took up if–then–else and popularized it."""
+  A conditional using an if–then–else syntax was invented by McCarthy in a
+  Fortran context. He proposed its inclusion in ALGOL, but it was not made part
+  of the Algol 58 specification. For Lisp, McCarthy used the more general
+  cond-structure. Algol 60 took up if–then–else and popularized it.
 
-so Algol 60 got "if-then-else" and LISP got ``cond``, which is more like the
-``case`` statement we're used to in other programming languages.
+So Algol 60 got "if-then-else" and LISP got ``cond``, which looks more like
+the ``case`` or ``switch`` statement we're used to in other programming
+languages
 
 
 COBOL
