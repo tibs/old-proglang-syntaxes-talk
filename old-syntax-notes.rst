@@ -11,7 +11,8 @@ https://github.com/tibs/old-proglang-syntaxes-talk
   own random notes. Progress so far:
 
   * FORTRAN IV rewritten
-  * LISP in progress
+  * LISP rewritten
+  * COBOL in progress
 
 .. contents::
 
@@ -517,26 +518,29 @@ COBOL
 
 https://en.wikipedia.org/wiki/COBOL
 
-COBOL was designed in 1959 and first standardised in 1968.
+COBOL is the third oldest programming language still in common use. It was
+designed in 1959 and first standardised in 1968.
 
 Both FORTRAN (FORmula TRANslation) and LISP (LISt Processing) were seen as
 languages for mathematicians and engineers, and there was a need for a
-programming language for use in business.
+programming language for use in business. While this may seem strange now, it
+made a lot of sense at the time - remember this was all new stuff.
 
-While this may seem strange now, it made a lot of sense at the time - remember
-this was all new stuff.
+This is why COBOL tried so hard to be more like English.
 
-This is where COBOL came in, and why it tried so hard to be more like English.
+It is possible to regar COBOL as the beginning of a long tradition of trying
+to make programming more accessible to non-academics/non-programmers. Some
+programming languages continue the tradition of trying to be "English like",
+for instance `Inform 7`_ in the text adventure space (this `paper from 2019`_
+gives a good introduction to its history) or AppleScript_.
+Others, like Blockly_, Scratch_ and LabVIEW_, try using graphical
+techniques - these could really only become practicable after our period of
+interest, as graphical hardware became easily available.
 
 COBOL is also important because of its innovations on how to specify the
 output of text.
 
-    ((See if there's anything usful I can say about that))
-
-(and this is something that people keep trying to reinvent, by the way, either
-by making English like programming languages (look at `Inform 7`_ in the text
-adventure space, or AppleScript) or by using graphical techniques (consider
-all the visual programming languages such as Blockly_, Scratch_ and LabVIEW_))
+    ((See if there's anything useful I can say about that))
 
 https://en.wikipedia.org/wiki/Visual_programming_language
 
@@ -545,11 +549,7 @@ https://en.wikipedia.org/wiki/Visual_programming_language
 .. _Blockly: https://en.wikipedia.org/wiki/Visual_programming_language
 .. _Scratch: https://en.wikipedia.org/wiki/Scratch_(programming_language)
 .. _LabVIEW: https://en.wikipedia.org/wiki/LabVIEW
-
-(paper__ from 2019, giving a good introduction to `Inform 7`_ and its history,
-and also talking about the plans to open source it).
-
-__ http://inform7.com/talks/2019/06/14/narrascope.html
+.. _`paper from 2019`: http://inform7.com/talks/2019/06/14/narrascope.html
 
 --------
 
