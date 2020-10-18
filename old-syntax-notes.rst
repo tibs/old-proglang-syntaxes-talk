@@ -430,9 +430,12 @@ but probably also that Lisp is relatively unusual in using prefix notation
 A good text editor should handle indentation and balancing the parentheses for
 you, but it is true that Lisp is visually unlike other programming languages.
 
-Interestingly, Franz Lisp recognised the problem of sometimes needing to type
-many closing parentheses in sequence, and allowed the use of ``]`` to mean
-"close all outstanding ``)``". I'm not sure how much that feature was used.
+Interestingly, `Franz Lisp`_ recognised the problem of sometimes needing to
+type many closing parentheses in sequence, and allowed the use of ``]`` to
+mean "close all outstanding ``)``". I'm not sure how much that feature was
+used.
+
+.. _`Franz Lisp`: https://en.wikipedia.org/wiki/Franz_Lisp
 
 LISP - as we know it
 --------------------
