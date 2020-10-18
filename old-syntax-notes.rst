@@ -68,7 +68,7 @@ course it as changed a lot over the years.
 The first FORTRAN compiler was in 1957, and FORTRAN IV was released in 1962.
 
 I've chosen to look at FORTRAN IV because it's the first programming language
-I had to learn at university, and because it's what we were still using in the
+I had to learn at university, and because we were still using it in the
 early 1980s at my first job. (Incidentally, the FORTRAN 66 standard
 essentially describes the same language, but no-one calls it that.)
 
@@ -131,25 +131,25 @@ Each column with holes in it represents the EBCDIC [2]_ code for a character.
        ASCII.
 .. _EBCDIC: https://en.wikipedia.org/wiki/EBCDIC
 
-There are three sorts of card used by FORTRAN: Data cards, comment cards and
-statement cards.
+There are three sorts of card used by FORTRAN: **Data cards**, **comment
+cards** and **statement cards**.
 
-*Data cards* are used for the input and output of data. All 80 columns are
+**Data cards** are used for the input and output of data. All 80 columns are
 used to indicate characters.
 
-*Comment cards* have a "C" in the first column. The rest of the characters on
- the card are ignored by the compiler.
+**Comment cards** have a "C" in the first column. The rest of the characters on
+the card are ignored by the compiler.
    
-*Statement cards* represent a single (physical) line of FORTRAN code.
+**Statement cards** represent a single "line" of FORTRAN code.
   
 Statement cards have four sections:
 
 ::
 
-                  1         2        7            8
-    12345 | 6 | 7890123456789 .. .. 9012 | 34567890
+                 1        2          3         4         5         6         7            8
+  12345 | 6 | 789012345678901234567890123456789012345678901234567890123456789012 | 34567890
 
-* The first five characters may be unique statement numbers. These are used to
+* The first five characters can be unique statement numbers. These are used to
   refer to the statement from elsewhere in the program. They don't have to
   occur in a particular order.
 
@@ -159,22 +159,22 @@ Statement cards have four sections:
   (So for a continued line, one might put a "0" in that column for the first
   card, a "1" for the second card, and so on.)
 
-* Positions 7-72 are used for the actual program code.
+* Positions 7 - 72 are used for the actual program code.
 
   In our example card, this is ``Z(1) = Y + W(1)``
 
-* Positions 73-80 are ignored by the compiler, but would typically be used as
+* Positions 73 - 80 are ignored by the compiler, but would typically be used as
   a sequence number. This is useful for indicating the order of the cards (we
-  actually had this as an exercise at University - we were given a small deck
+  actually had this as an exercise at University - we were given a deck
   of FORTRAN punched cards, without sequence numbers, and told that "they had
   been dropped" and we had to put them back into order.)
 
   In our example card, this is ``7961039``. Presumably this is not *just* a
   card count, as that would be a very long program.
 
-On a punched card, columns 1 - 6 could be left unpunched if unused, but when
-typing FORTRAN code into a text editor, actual spaces would be used (use of
-tabs is beyond the scope of this article).
+On a punched card, columns 1 - 6 could be left unpunched if there was no
+statement number, but when typing FORTRAN code into a text editor, actual
+spaces would be used (use of tabs is beyond the scope of this article).
 
 Here is that earlier example with `•` characters replacing leading spaces::
 
@@ -243,14 +243,16 @@ For instance:
 The arithmetic IF
 ~~~~~~~~~~~~~~~~~
 
-There was also the arithmetic IF:
-    
 .. code:: fortran
 
         IF (X/Y*Z) 100,300,50
         
 If the result of ``X/Y*Z`` is negative, GOTO statement number 100, if zero
 GOTO statement number 300, and if positive GOTO statement number 50.
+
+This felt very useful at the time, but could quickly lead to `spaghetti code`_.
+
+.. _`spaghetti code`: https://en.wikipedia.org/wiki/Spaghetti_code
 
 Implicit typing of variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
