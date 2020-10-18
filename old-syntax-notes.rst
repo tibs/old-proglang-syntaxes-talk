@@ -424,7 +424,8 @@ I think that is in large part because of the parentheses:
 
    https://xkcd.com/297/ (Randall Monroe)
 
-but probably also that Lisp is unusual 
+but probably also that Lisp is relatively unusual in using prefix notation
+(``(+ 1 2)`` rather than ``1 + 2``).
 
 A good text editor should handle indentation and balancing the parentheses for
 you, but it is true that Lisp is visually unlike other programming languages.
