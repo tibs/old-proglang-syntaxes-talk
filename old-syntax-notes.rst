@@ -64,7 +64,7 @@ https://en.wikipedia.org/wiki/Fortran
 
 FORTRAN is arguably the first high level programming language, and it is
 definitely the oldest high level language still in use today, although of
-course it as changed a lot over the years.
+course it has changed a lot over the years.
 
 The first FORTRAN compiler was in 1957, and FORTRAN IV was released in 1962.
 
@@ -126,11 +126,8 @@ The above is a punched card representing the FORTRAN line of code:
 
    Z(1) = Y + W(1)
 
-Each column with holes in it represents the EBCDIC [2]_ code for a character.
-
-.. [2] EBCDIC_ is/was an IBM encoding, with interesting differences from
-       ASCII.
-.. _EBCDIC: https://en.wikipedia.org/wiki/EBCDIC
+(I'm assuming that from the text at the top of the card - I haven't actually
+decoded the hole sequences.)
 
 There are three sorts of card used by FORTRAN: **Data cards**, **comment
 cards** and **statement cards**.
@@ -165,14 +162,13 @@ Statement cards have four sections:
 
   In our example card, this is ``Z(1) = Y + W(1)``
 
-* Positions 73 - 80 are ignored by the compiler, but would typically be used as
-  a sequence number. This is useful for indicating the order of the cards (we
-  actually had this as an exercise at University - we were given a deck
-  of FORTRAN punched cards, without sequence numbers, and told that "they had
-  been dropped" and we were to put them back into order.)
+* Positions 73 - 80 are ignored by the compiler, but would typically be used
+  as a sequence indicator. This is useful for indicating the order of the
+  cards (we actually had this as an exercise at University - we were given a
+  deck of FORTRAN punched cards, without sequence numbers, and told that "they
+  had been dropped" and we were to put them back into order.)
 
-  In our example card, this is ``7961039``. Presumably this is not *just* a
-  card count, as that would be a very long program.
+  In our example card, this is ``PROJ039`` (or so the text at the top suggests).
 
 On a punched card, columns 1 - 6 could be left unpunched if there was no
 statement number or continuation character, but when typing FORTRAN code into
@@ -1501,6 +1497,13 @@ Other links
 
 (may also be interesting)
 
+* More on punched cards:
+
+  * https://craftofcoding.wordpress.com/2017/01/28/read-your-own-punch-cards/
+    shows how to read the same punched card we use as an example
+  * https://en.wikipedia.org/wiki/Punched_card
+  * https://homepage.divms.uiowa.edu/~jones/cards/codes.html
+  * "type" your own punch card: https://www.masswerk.at/keypunch/
 
 * https://en.wikipedia.org/wiki/History_of_programming_languages
 
