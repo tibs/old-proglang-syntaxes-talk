@@ -157,7 +157,8 @@ Statement cards have four sections:
   not "0", then this card is a continuation of the previous card.
 
   (So for a continued line, one might put a "0" in that column for the first
-  card, a "1" for the second card, and so on.)
+  card, a "1" for the second card, and so on. I don't remember if we followed
+  that convention ourselves.)
 
 * Positions 7 - 72 are used for the actual program code.
 
@@ -167,16 +168,18 @@ Statement cards have four sections:
   a sequence number. This is useful for indicating the order of the cards (we
   actually had this as an exercise at University - we were given a deck
   of FORTRAN punched cards, without sequence numbers, and told that "they had
-  been dropped" and we had to put them back into order.)
+  been dropped" and we were to put them back into order.)
 
   In our example card, this is ``7961039``. Presumably this is not *just* a
   card count, as that would be a very long program.
 
 On a punched card, columns 1 - 6 could be left unpunched if there was no
-statement number, but when typing FORTRAN code into a text editor, actual
-spaces would be used (use of tabs is beyond the scope of this article).
+statement number or continuation character, but when typing FORTRAN code into
+a text editor, actual spaces would be used (use of tabs is beyond the scope of
+this article).
 
-Here is that earlier example with `•` characters replacing leading spaces::
+Here is that earlier example with `•` characters replacing leading spaces, to
+mak the layout a bit more obvious::
 
   ••••••INTEGER BOTTLS
   ••••••DO 50 I = 1, 99
@@ -207,13 +210,13 @@ same as ``GO TO 99`` and also the same as ``G O T O 9 9``.
 There are no reserved words
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-So statements like:
+Statements like:
 
   .. code:: fortran
 
     IF (IF.EQ.THEN) IF=IF*THEN
 
-  are perfectly sensible (although perhap ill-advised).
+are perfectly sensible (although perhap ill-advised).
 
 Six character names
 ~~~~~~~~~~~~~~~~~~~
@@ -226,7 +229,8 @@ what the function was.
 No If/then/else
 ~~~~~~~~~~~~~~~
 
-If/then/else hadn't been invented yet. The basic IF was of the form:
+If/then/else hadn't been invented when FORTRAN IV was defined. The basic IF
+was of the form:
 
 .. code:: fortran
 
@@ -247,8 +251,8 @@ The arithmetic IF
 
         IF (X/Y*Z) 100,300,50
         
-If the result of ``X/Y*Z`` is negative, GOTO statement number 100, if zero
-GOTO statement number 300, and if positive GOTO statement number 50.
+If the result of ``X/Y*Z`` is negative, go to statement number 100, if zero
+go to statement number 300, and if positive go to statement number 50.
 
 This felt very useful at the time, but could quickly lead to `spaghetti code`_.
 
@@ -303,7 +307,7 @@ LISP
 
 https://en.wikipedia.org/wiki/Lisp_(programming_language)
 
-LISP is one year yonger than FORTRAN, and was originally specified in 1958.
+LISP is one year younger than FORTRAN, and was originally specified in 1958.
 
 M-expressions were meant to be the form of the language, and are used in the
 documentaion (for instance in the LISP 1.5 Programmer's Manual).
