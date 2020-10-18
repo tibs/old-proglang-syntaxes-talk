@@ -2,9 +2,10 @@
 (What may now seem) syntax oddities in older programming languages
 ==================================================================
 
-A talk on (what may now seem strange) syntax in older programming languages
+Notes to accompany a talk given to CamPUG_
 
-Written as a talk for CamPUG_
+The slides, and this document itself, can be found at
+https://github.com/tibs/old-proglang-syntaxes-talk
 
 .. contents::
 
