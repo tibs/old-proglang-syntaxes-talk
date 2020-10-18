@@ -49,14 +49,12 @@ Requirements to build the documents:
 
 * I use poetry_ to manage the dependencies needed to build the PDFs.
 * rst2pdf_ and its dependencies
+* docutils_ (for reStructuredText_) and pygments_ - actually that's not
+  specified in the poetry spec as I install it globally on my machine.
 
 .. _poetry: https://python-poetry.org/
 .. _rst2pdf: https://rst2pdf.org/
 
-as was:
-
-* pandoc_ and TeX_ (on mac, BasicTeX should be enough)
-* docutils_ (for reStructuredText_)
 
 and an appropriate ``make`` program if you want to use the Makefile.
 
@@ -64,6 +62,7 @@ and an appropriate ``make`` program if you want to use the Makefile.
 .. _CamPUG: https://www.meetup.com/CamPUG/
 .. _pandoc: https://pandoc.org/
 .. _docutils: http://docutils.sourceforge.net/
+.. _pygments: https://pygments.org/
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
 .. _TeX: https://www.ctan.org/starter
 

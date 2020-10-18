@@ -332,7 +332,7 @@ From https://en.wikipedia.org/wiki/Lisp_(programming_language)#History:
   McCarthy's original notation used bracketed "`M-expressions`_" that would be
   translated into `S-expressions`_.
 
-  ....
+  ...
 
   Once Lisp was implemented, programmers rapidly chose to use S-expressions,
   and M-expressions were abandoned.
@@ -362,8 +362,8 @@ From https://en.wikipedia.org/wiki/M-expression:
   program was adopted by McCarthy's research group, establishing S-expressions
   as the dominant form of Lisp.
 
-.. _`M-expression`: https://en.wikipedia.org/wiki/M-expression
-.. _`S-expression`: https://en.wikipedia.org/wiki/S-expression
+.. _`M-expressions`: https://en.wikipedia.org/wiki/M-expression
+.. _`S-expressions`: https://en.wikipedia.org/wiki/S-expression
   
 From
 http://www.softwarepreservation.org/projects/LISP/lisp2/SP-2450-SUMSQUARE_LCS.pdf
