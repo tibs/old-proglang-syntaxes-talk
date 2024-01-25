@@ -29,7 +29,6 @@ I'm including the resultant PDF files in the repository. These
 may not always be as up-to-date as the source files, so check their
 timestamps.
 
-* The 4x3 aspect ratio slides are `<old-syntax-slides-4x3.pdf>`_.
 * The 16x9 aspect ratio slides are `<old-syntax-slides-16x9.pdf>`_.
 
 As it's more readable, I've also included a PDF version of the notes,
