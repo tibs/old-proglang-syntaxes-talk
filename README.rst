@@ -9,7 +9,9 @@ Written as a talk for CamPUG_
 History
 ~~~~~~~
 
-The talk was given at ...
+The talk was given at CamPUG on `Tuesday 1st September, 2020`_
+
+.. _`Tuesday 1st September, 2020`: https://www.meetup.com/campug/events/272806403/
 
 The files
 ~~~~~~~~~
